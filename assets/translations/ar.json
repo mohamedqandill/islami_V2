@@ -1,0 +1,19 @@
+{
+  "appBarTitle": "اسلامي",
+  "quranTap": "القرأن",
+  "suraName": "اسم السوره",
+  "suraNum": "عدد الايات",
+  "quran": "القرأن-ألكريم",
+  "hadethTap": "الحديث",
+  "tasbehTap": "التسبيح",
+  "appBarTaspeh": "التسبيح",
+  "appBarHadeth": "الحديث",
+  "appBarSettings": "الاعدادات",
+  "settingsTap": "الاعدادات",
+  "themeTap": "المظهر",
+  "light": "فاتح",
+  "darkTap": "داكن",
+  "languageTap": "اللغه",
+  "englishTap": "انجليزي",
+  "arabicTap": "عربي"
+}

@@ -1,0 +1,19 @@
+{
+  "appBarTitle": "Islami",
+  "quranTap": "Quran",
+  "suraName": "SuraName",
+  "suraNum": "Chapter",
+  "hadethTap": "Hadeth",
+  "quran": "Quran-Karem",
+  "appBarTaspeh": "ُTaspeh",
+  "appBarHadeth": "Hadeth",
+  "appBarSettings": "Settings",
+  "tasbehTap": "Taspeh",
+  "settingsTap": "Settings",
+  "themeTap": "Theme",
+  "darkTap": "Dark",
+  "light": "Light",
+  "languageTap": "Language",
+  "englishTap": "English",
+  "arabicTap": "Arabic"
+}

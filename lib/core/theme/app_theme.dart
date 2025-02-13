@@ -24,6 +24,7 @@ class AppTheme {
   static ThemeData lightTheme = ThemeData(
       textTheme: TextTheme(
           bodyLarge: GoogleFonts.amiri(
+
               fontSize: 20.sp, fontWeight: FontWeight.w500, color: Colors.black),
           bodyMedium: TextStyle(
               fontSize: 25.sp, fontWeight: FontWeight.w700, color: Colors.black),

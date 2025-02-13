@@ -72,7 +72,7 @@ class _HadethScreenState extends State<HadethScreen> {
   Future<void> readHadeth() async {
     String hadeth = await rootBundle.loadString("assets/hadeth/ahadeth.txt");
     List<String> hadethDetail = hadeth.split("#");
-    for (int i = 0; i < hadeth.length; i++) {
+    for (int i = 0; i < hadethDetail.length ; i++) {
       String hadethOne = hadethDetail[i];
       List<String> hadethLines = hadethOne.trim().split("\n");
       String hadethTitle = hadethLines[0];

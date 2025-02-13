@@ -33,47 +33,51 @@ class _NabiScreenState extends State<NabiScreen> {
                 setState(() {});
               },
               child: Icon(
-                Icons.arrow_back,color: pro.mode == ThemeMode.dark
-                  ? Colors.white
-                  : Colors.black,
+                Icons.arrow_back,
+                color: pro.mode == ThemeMode.dark ? Colors.white : Colors.black,
               )),
         ),
         body: Center(
-          child: Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  "الصلاه علي النبي ",
-                  style: TextStyle(fontSize: 30.sp, fontWeight: FontWeight.w800),
-                ),
-                Text(
-                  "$counter",
-                  style: TextStyle(fontSize: 50.sp, fontWeight: FontWeight.bold),
-                ),
-                ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        elevation: 20.sp,
-                        side: pro.mode == ThemeMode.dark
-                            ? BorderSide(color: Colors.red, width: 2.w)
-                            : BorderSide(color: Colors.white, width: 2.w),
-                        backgroundColor: pro.mode == ThemeMode.dark
-                            ? Color(0xffFACC1D).withOpacity(0.7)
-                            : Color(0xffB7935F),
-                        shape: CircleBorder(side: BorderSide()),
-                        fixedSize: Size(300.w, 250.h)),
-                    onPressed: () {
-                      counter++;
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                "الصلاه علي النبي ",
+                style:
+                    TextStyle(fontSize: 30.sp, fontWeight: FontWeight.w800),
+              ),
+              Text(
+                "$counter",
+                style:
+                    TextStyle(fontSize: 50.sp, fontWeight: FontWeight.bold),
+              ),
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      elevation: 20.sp,
+                      side: pro.mode == ThemeMode.dark
+                          ? BorderSide(color: Colors.red, width: 2.w)
+                          : BorderSide(color: Colors.white, width: 2.w),
+                      backgroundColor: pro.mode == ThemeMode.dark
+                          ? Color(0xffFACC1D).withOpacity(0.7)
+                          : Color(0xffB7935F),
+                      shape: CircleBorder(side: BorderSide()),
+                      fixedSize: Size(300.w, 250.h)),
+                  onPressed: () {
+                    counter++;
 
-                      setState(() {});
-                    },
-                    child: Text(
-                      "صلي علي النبي",
-                      style:
-                          TextStyle(fontSize: 35.sp, fontWeight: FontWeight.bold),
-                    ))
-              ],
-            ),
+                    setState(() {});
+                  },
+                  child: Text(
+                    "صلي علي النبي",
+                    style: pro.mode == ThemeMode.dark
+                        ? TextStyle(
+                            fontSize: 35.sp, fontWeight: FontWeight.bold)
+                        : TextStyle(
+                            fontSize: 35.sp,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold),
+                  ))
+            ],
           ),
         ),
       ),

@@ -66,7 +66,7 @@ class _HadethDetailsState extends State<HadethDetails> {
               return Column(
                 children: [
                   Text(
-                    textAlign: TextAlign.justify,
+                    // textAlign: TextAlign.justify,
                     textDirection: TextDirection.rtl,
                     "${model.content[index]}",
                     style: pro.mode == ThemeMode.dark

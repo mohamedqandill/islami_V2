@@ -15,6 +15,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'firebase_options.dart';
+import 'moduels/layouts/screens/prayer_time_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -66,6 +67,7 @@ class MyApp extends StatelessWidget {
           NabiScreen.routeName: (context) => NabiScreen(),
           AzkarSabah.routeName: (context) => AzkarSabah(),
           AzkarMasaa.routeName: (context) => AzkarMasaa(),
+          PrayerTimeScreen.routeName: (context) => PrayerTimeScreen(),
         },
         initialRoute: SplashScreen.routeName,
         // localizationsDelegates: [

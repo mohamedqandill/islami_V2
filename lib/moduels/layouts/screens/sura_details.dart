@@ -87,16 +87,17 @@ class SuraDetails extends StatelessWidget {
                             for (var i = 0;
                                 i <= provider.verses.length - 1;
                                 i++) ...{
-                              TextSpan(
-                                  text: provider.verses[i].trim(),
-                                  style: pro.mode == ThemeMode.dark
-                                      ? GoogleFonts.amiri(
-                                          fontSize: 25.sp,
-                                          fontWeight: FontWeight.bold)
-                                      : GoogleFonts.amiri(
-                                          fontSize: 25.sp,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.black)),
+                             if(provider.verses[i].trim().isNotEmpty)
+                               TextSpan(
+                                   text: provider.verses[i].replaceAll(RegExp(r'\s+'), ' ').trim(),
+                                   style: pro.mode == ThemeMode.dark
+                                       ? GoogleFonts.amiri(
+                                       fontSize: 25.sp,
+                                       fontWeight: FontWeight.bold)
+                                       : GoogleFonts.amiri(
+                                       fontSize: 25.sp,
+                                       fontWeight: FontWeight.bold,
+                                       color: Colors.black)),
                               WidgetSpan(
                                 alignment: PlaceholderAlignment.middle,
                                 child: CircleAvatar(

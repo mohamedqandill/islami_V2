@@ -5,6 +5,7 @@ import 'package:islami/moduels/layouts/layout_screen.dart';
 import 'package:islami/moduels/layouts/screens/azkarSabah.dart';
 import 'package:islami/moduels/layouts/screens/azkar_masaa.dart';
 import 'package:islami/moduels/layouts/screens/nabi_screen.dart';
+import 'package:islami/moduels/layouts/screens/prayer_time_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../../providers/my_provider.dart';
@@ -27,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   int index = 0;
-  double width = 200;
+  double width = 200.w;
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return bg_widget(
         child: Scaffold(
       body: Padding(
-        padding:  EdgeInsets.all(8.0.sp),
+        padding: EdgeInsets.all(8.0.sp),
         child: Column(
           children: [
             Container(
@@ -49,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: pro.mode == ThemeMode.dark
                       ? Colors.black12
                       : Colors.white,
-                  borderRadius:  BorderRadius.only(
+                  borderRadius: BorderRadius.only(
                     bottomRight: Radius.circular(60.r),
                     bottomLeft: Radius.circular(20.r),
                     topLeft: Radius.circular(50.r),
@@ -63,14 +64,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ],
                   border: Border.all(color: Color(0xffB7935F), width: 3.w)),
-              child: Expanded(
+              child: SizedBox(
+                  width: double.infinity,
                   child: SingleChildScrollView(
                       child: Text(
-                "${doaa[index]}",
-                style: Theme.of(context).textTheme.bodyMedium,
-                textDirection: TextDirection.rtl,
-                textAlign: TextAlign.center,
-              ))),
+                    "${doaa[index]}",
+                    style: Theme.of(context).textTheme.bodyMedium,
+                    textDirection: TextDirection.rtl,
+                    textAlign: TextAlign.center,
+                  ))),
             ),
             SizedBox(
               height: 30.h,
@@ -108,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     image: AssetImage(
                       "assets/icons/icons8-swap-50.png",
                     ),
-                    width: 40.w,
+                    width: 30.w,
                   ),
                 ],
               ),
@@ -125,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisSpacing: 20),
                 children: [
                   Padding(
-                    padding:  EdgeInsets.all(3.0.sp),
+                    padding: EdgeInsets.all(3.0.sp),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           fixedSize: Size(200.w, 50.h),
@@ -232,21 +234,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           elevation: 8,
                           shadowColor: Colors.amber),
                       onPressed: () {
-                        index++;
-                        if (index == 5) {
-                          index = 0;
-                        }
-                        setState(() {});
+                        Navigator.pushNamed(
+                            context, PrayerTimeScreen.routeName);
                       },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            "مواقيت الصلاه",
-                            style: Theme.of(context).textTheme.titleSmall,
-                          ),
-                          // Image(image: AssetImage("assets/icons/icons8-swap-50.png",),width: 40,),
-                        ],
+                      child: Text(
+                        "مواقيت الصلاه",
+                        style: Theme.of(context).textTheme.titleSmall,
                       ),
                     ),
                   ),

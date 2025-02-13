@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:islami/core/widgets/bg_widget.dart';
@@ -34,11 +36,9 @@ class _AzkarSabahState extends State<AzkarSabah> {
     """اللّهُـمَّ إِنِّـي أسْـأَلُـكَ العَـفْوَ وَالعـافِـيةَ في الدُّنْـيا وَالآخِـرَة ، اللّهُـمَّ إِنِّـي أسْـأَلُـكَ العَـفْوَ وَالعـافِـيةَ في ديني وَدُنْـيايَ وَأهْـلي وَمالـي ، اللّهُـمَّ اسْتُـرْ عـوْراتي وَآمِـنْ رَوْعاتـي ، اللّهُـمَّ احْفَظْـني مِن بَـينِ يَدَيَّ وَمِن خَلْفـي وَعَن يَمـيني وَعَن شِمـالي ، وَمِن فَوْقـي ، وَأَعـوذُ بِعَظَمَـتِكَ أَن أُغْـتالَ مِن تَحْتـي.""",
     """للّهُـمَّ عالِـمَ الغَـيْبِ وَالشّـهادَةِ فاطِـرَ السّماواتِ وَالأرْضِ رَبَّ كـلِّ شَـيءٍ وَمَليـكَه ، أَشْهَـدُ أَنْ لا إِلـهَ إِلاّ أَنْت ، أَعـوذُ بِكَ مِن شَـرِّ نَفْسـي وَمِن شَـرِّ الشَّيْـطانِ وَشِرْكِهِ ، وَأَنْ أَقْتَـرِفَ عَلـى نَفْسـي سوءاً أَوْ أَجُـرَّهُ إِلـى مُسْـلِم.""",
   ];
+  List<int> azkarTimes = [1, 3, 3, 2, 2, 1, 2, 2, 2, 3, 2, 1, 2, 2, 1, 2];
   int index = 0;
-  Map<int, String> map = {
-    3: """اللّهُ لاَ إِلَـهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلاَّ بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلاَ يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلاَّ بِمَا شَاء وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالأَرْضَ وَلاَ يَؤُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ.""",
-    4: """اللّهُ لاَ إِلَـهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلاَّ بِإِذْنِهِ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلاَ يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلاَّ بِمَا شَاء وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالأَرْضَ وَلاَ يَؤُودُهُ حِفْظُهُمَا وَهُوَ الْعَلِيُّ الْعَظِيمُ."""
-  };
+
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +59,8 @@ class _AzkarSabahState extends State<AzkarSabah> {
               setState(() {});
             },
             child: Icon(
-              Icons.arrow_back,color: pro.mode == ThemeMode.dark
-                ? Colors.white
-                : Colors.black,
+              Icons.arrow_back,
+              color: pro.mode == ThemeMode.dark ? Colors.white : Colors.black,
             )),
       ),
       body: Column(
@@ -70,41 +69,70 @@ class _AzkarSabahState extends State<AzkarSabah> {
             child: ListView.builder(
               itemCount: azkaar.length,
               itemBuilder: (context, index) {
-                return Padding(
-                  padding:  EdgeInsets.all(12.0.sp),
-                  child: SingleChildScrollView(
-                    child: Container(
-                      padding: EdgeInsets.all(12.sp),
-                      width: double.infinity,
-                      // height: 200,
-                      decoration: BoxDecoration(
-                          color: pro.mode == ThemeMode.dark
-                              ? Color(0xff141A2E)
-                              : Colors.white,
-                          boxShadow: [
-                            BoxShadow(
+                return Stack(
+                  children: [
+                    InkWell(
+
+                      child: Padding(
+                        padding: EdgeInsets.all(12.0.sp),
+                        child: SingleChildScrollView(
+                          child: Container(
+                            padding: EdgeInsets.all(12.sp),
+                            width: double.infinity,
+                            // height: 200,
+                            decoration: BoxDecoration(
                                 color: pro.mode == ThemeMode.dark
-                                    ? Colors.red
-                                    : Color(0xffB7935F),
-                                blurRadius: 10.sp,
-                                spreadRadius: 1.sp)
-                          ],
-                          borderRadius: BorderRadius.only(
-                            bottomRight: Radius.circular(50.r),
-                            bottomLeft: Radius.circular(20.r),
-                            topLeft: Radius.circular(40.r),
-                            topRight: Radius.circular(20.r),
+                                    ?  azkarTimes[index]==0?Colors.grey:Color(0xff141A2E)
+                                    :azkarTimes[index]==0? Colors.grey:Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: pro.mode == ThemeMode.dark
+                                          ?  azkarTimes[index]==0?Colors.grey:Colors.red
+                                          : Color(0xffB7935F),
+                                      blurRadius: 10.sp,
+                                      spreadRadius: 1.sp)
+                                ],
+                                borderRadius: BorderRadius.only(
+                                  bottomRight: Radius.circular(50.r),
+                                  bottomLeft: Radius.circular(20.r),
+                                  topLeft: Radius.circular(40.r),
+                                  topRight: Radius.circular(20.r),
+                                ),
+                                border: pro.mode == ThemeMode.dark
+                                    ? Border.all(color:  azkarTimes[index]==0?Colors.grey:Colors.red, width: 1.w)
+                                    : Border.all(
+                                        color:azkarTimes[index]==0? Colors.grey: Color(0xffB7935F), width: 3.w)),
+                            child: Text(
+                              "${azkaar[index]}",
+                              textDirection: TextDirection.rtl,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
                           ),
-                          border: pro.mode == ThemeMode.dark
-                              ? Border.all(color: Colors.red, width: 1.w)
-                              : Border.all(color: Color(0xffB7935F), width: 3.w)),
-                      child: Text(
-                        "${azkaar[index]}",
-                        textDirection: TextDirection.rtl,
-                        style: Theme.of(context).textTheme.bodyMedium,
+                        ),
                       ),
+                      onTap: () {
+                        if(azkarTimes[index]>0){
+                          azkarTimes[index]--;
+                          setState(() {
+
+                          });
+                        }
+                      },
                     ),
-                  ),
+                    Container(
+                      child: Center(
+                        child: Text(
+                          azkarTimes[index].toString(),
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                      width: 30.w,
+                      height: 30.h,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(50.r),
+                          color: azkarTimes[index]==0? Colors.grey:Color(0xffB7935F)),
+                    )
+                  ],
                 );
               },
             ),

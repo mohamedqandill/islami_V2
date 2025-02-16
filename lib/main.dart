@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'firebase_options.dart';
 import 'moduels/layouts/screens/prayer_time_screen.dart';
+import 'moduels/layouts/screens/reciter_sura_screen.dart';
+import 'moduels/layouts/screens/setting_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,7 +36,7 @@ void main() async {
     fallbackLocale: Locale('en', 'US'),
     child: ChangeNotifierProvider(
         create: (context) => MyProvider(sharedPrefernces),
-        child: const MyApp()),
+        child: MyApp()),
   ));
 }
 
@@ -68,6 +71,8 @@ class MyApp extends StatelessWidget {
           AzkarSabah.routeName: (context) => AzkarSabah(),
           AzkarMasaa.routeName: (context) => AzkarMasaa(),
           PrayerTimeScreen.routeName: (context) => PrayerTimeScreen(),
+          SettingScreen.routeName: (context) => SettingScreen(),
+          ReciterSuraScreen.routeName: (context) => ReciterSuraScreen(),
         },
         initialRoute: SplashScreen.routeName,
         // localizationsDelegates: [

@@ -55,8 +55,8 @@ class AppTheme {
           unselectedItemColor: Colors.white,
           showUnselectedLabels: false,
           backgroundColor: lightPrimary,
-          selectedIconTheme: IconThemeData(size: 32)),
-      dividerTheme: DividerThemeData(thickness: 5.sp, color: Color(0xffB7935F)),
+          selectedIconTheme: IconThemeData(size: 32.sp)),
+      dividerTheme: DividerThemeData(thickness: 5.w, color: Color(0xffB7935F)),
       colorScheme: ColorScheme.fromSeed(
           seedColor: lightPrimary,
           primary: lightPrimary,
@@ -88,7 +88,7 @@ class AppTheme {
         ),
         centerTitle: true,
       ),
-      dividerTheme: DividerThemeData(thickness: 5, color: darkSecondary),
+      dividerTheme: DividerThemeData(thickness: 5.w, color: darkSecondary),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         type: BottomNavigationBarType.fixed,
         selectedItemColor: darkSecondary,
@@ -96,7 +96,7 @@ class AppTheme {
         showUnselectedLabels: false,
         backgroundColor: darkPrimary,
       ),
-      iconTheme: IconThemeData(color: Colors.white, size: 30),
+      iconTheme: IconThemeData(color: Colors.white, size: 30.sp),
       colorScheme: ColorScheme.fromSeed(
           seedColor: darkPrimary,
           primary: darkPrimary,

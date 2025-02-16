@@ -3,15 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:islami/models/PrayerTimeModel.dart';
+import 'package:islami/models/ReciterModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../models/suraAudioModel.dart';
 
 class MyProvider extends ChangeNotifier {
   late ThemeMode mode;
   late Dio dio;
- late PrayerTimeModel prayerTimeModel;
+  late PrayerTimeModel prayerTimeModel;
+  late ReciterModel reciterModel;
+  late String audioFile;
   late Position position;
-
-
 
 
   static const String isDarkTheme = "Theme";
@@ -19,11 +22,8 @@ class MyProvider extends ChangeNotifier {
   final SharedPreferences prefs;
 
   MyProvider(this.prefs) {
-
     readSavedTheme();
     dio = Dio();
-
-
   }
 
   void readSavedTheme() {
@@ -43,100 +43,66 @@ class MyProvider extends ChangeNotifier {
     saveTheme();
   }
 
- Future<PrayerTimeModel> prayerTime(String date, String address) async {
-    try{
+  Future<PrayerTimeModel> prayerTime(String date, String address) async {
+    try {
       var response = await dio.get(
         "https://api.aladhan.com/v1/timingsByAddress",
         queryParameters: {"date": date, "address": address},
       );
       print(response.statusCode);
-       if(response.statusCode==200){
-         prayerTimeModel= PrayerTimeModel.fromJson(response.data);
-
-       }
+      if (response.statusCode == 200) {
+        prayerTimeModel = PrayerTimeModel.fromJson(response.data);
+      }
 
       return prayerTimeModel;
-
-    }catch(e){
+    } catch (e) {
       rethrow;
     }
   }
 
-  // getLocation()async{
-  //
-  //   bool _serviceEnabled;
-  //   PermissionStatus _permissionGranted;
-  //   LocationData _locationData;
-  //
-  //   _serviceEnabled = await location.serviceEnabled();
-  //   if (!_serviceEnabled) {
-  //     _serviceEnabled = await location.requestService();
-  //     if (!_serviceEnabled) {
-  //       return;
-  //     }
-  //   }
-  //
-  //   _permissionGranted = await location.hasPermission();
-  //   if (_permissionGranted == PermissionStatus.denied) {
-  //     _permissionGranted = await location.requestPermission();
-  //     if (_permissionGranted != PermissionStatus.granted) {
-  //       return;
-  //     }
-  //   }
-  //
-  //   _locationData = await location.getLocation();
-  //
-  // }
-  Future<void> checkAndRequestLocationPermission() async {
-    // Check if location services are enabled
-    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      print("Location services are disabled. Please enable them.");
-      return;
-    }
-
-    // Check current permission status
-    LocationPermission permission = await Geolocator.checkPermission();
-
-    if (permission == LocationPermission.denied) {
-      // Request permission if denied
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        print("Location permission denied.");
-        return;
-      }
-    }
-
-    if (permission == LocationPermission.deniedForever) {
-      // Handle permanently denied permission
-      print("Location permission is permanently denied. You need to enable it from settings.");
-      return;
-    }
-
-    if (permission == LocationPermission.whileInUse || permission == LocationPermission.always) {
-      // Permission granted, proceed with location retrieval
-      print("Location permission granted.");
-       position = await Geolocator.getCurrentPosition();
-      print("Current Location: ${position.latitude}, ${position.longitude}");
-    }
-  }
-  Future<String?> getCityName( ) async {
+  getAllReciter() async {
     try {
-
-      List<Placemark> placemarks = await placemarkFromCoordinates(
-        position.latitude,
-        position.longitude,
+      var response = await dio.get(
+        "https://api.quran.com/api/v4/resources/recitations",
+        queryParameters: {
+          "language": "ar",
+        },
       );
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        reciterModel = ReciterModel.fromJson(response.data);
 
-      // Get the city name
-      if (placemarks.isNotEmpty) {
-        print(placemarks.first.locality);
-        return placemarks.first.locality; // Example: "Cairo"
       }
+
+      return reciterModel;
     } catch (e) {
-      print("Error: $e");
+      rethrow;
     }
-    return null;
   }
+  Future<String> suraAudio({required int id, required int chapter}) async {
+
+    try {
+      var response = await dio.get(
+        "https://api.quran.com/api/v4/chapter_recitations/$id/$chapter",
+
+      );
+      print(response.statusCode);
+      if (response.statusCode == 200) {
+        SuraAudioModel suraAudioModel = SuraAudioModel.fromJson(response.data);
+        audioFile=suraAudioModel.audioFile?.audioUrl??"";
+        print(suraAudioModel.audioFile?.audioUrl??"");
+        notifyListeners();
+
+
+      }
+
+      return audioFile ;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+
+
 
 }

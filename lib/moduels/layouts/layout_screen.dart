@@ -5,8 +5,10 @@ import 'package:islami/moduels/layouts/screens/azkar_masaa.dart';
 import 'package:islami/moduels/layouts/screens/hadeth_screen.dart';
 import 'package:islami/moduels/layouts/screens/home_screen.dart';
 import 'package:islami/moduels/layouts/screens/quran_screen.dart';
+import 'package:islami/moduels/layouts/screens/reciter_screen.dart';
 import 'package:islami/moduels/layouts/screens/sebha_screen.dart';
 import 'package:islami/moduels/layouts/screens/setting_screen.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../core/widgets/bg_widget.dart';
 
@@ -24,14 +26,15 @@ List<Widget> screen = [
   HomeScreen(),
   HadethScreen(),
   SebhaScreen(),
-  SettingScreen(),
+  ReciterScreen(),
 ];
 List<String> titels = [
   "quran",
   'appBarTitle',
   'appBarHadeth',
   'appBarTaspeh',
-  'appBarSettings'
+  'appBarReciter'
+
 ];
 
 class _LayoutScreenState extends State<LayoutScreen> {
@@ -43,6 +46,14 @@ class _LayoutScreenState extends State<LayoutScreen> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
+          actions: [
+            InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, SettingScreen.routeName);
+                },
+                child: Lottie.asset(fit: BoxFit.cover,
+                    "assets/icons/Animation - 1739711751213.json",width: 50.w,height: 50.h)),
+          ],
           title: Text(
             titels[selectedIndex].tr(),
             style: Theme.of(context).textTheme.titleLarge,
@@ -76,13 +87,13 @@ class _LayoutScreenState extends State<LayoutScreen> {
                     size: 40.sp, AssetImage("assets/icons/icon_hadeth.png")),
                 label: 'hadethTap'.tr()),
             BottomNavigationBarItem(
-                icon: ImageIcon(
-                    size: 40.sp, AssetImage("assets/icons/icon_sebha.png")),
+              icon: ImageIcon(
+                  size: 40.sp, AssetImage("assets/icons/icon_sebha.png")),
               label: "tasbehTap".tr(),
             ),
             BottomNavigationBarItem(
-              icon: Icon(size: 30.sp, Icons.settings),
-              label: "settingsTap".tr(),
+              icon: Icon(size: 30.sp, Icons.audiotrack),
+              label: "reciterTap".tr(),
             ),
           ],
         ),

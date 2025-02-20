@@ -1,3 +1,5 @@
+
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -33,6 +35,7 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
   Future<void> _loadPrayerTimes() async {
     try {
       var pro = Provider.of<MyProvider>(context, listen: false);
+
       await pro.prayerTime(formattedDay, "Cairo");
     } catch (e) {
       setState(() {
@@ -158,8 +161,10 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
   List<String> convertListTo12HourFormat(List<String> timeList) {
     return timeList.map((time) {
       try {
-        DateTime dateTime = DateFormat("HH:mm").parse(time);
-        return DateFormat("h:mm a").format(dateTime);
+
+        DateTime dateTime = DateFormat("H:mm", 'en').parse(time);
+        // ضبط اللغة على الإنجليزية
+        return DateFormat("h:mm a", 'en').format(dateTime);
       } catch (e) {
         return "غير متاح";
       }

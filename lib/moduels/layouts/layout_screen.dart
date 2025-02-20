@@ -8,7 +8,9 @@ import 'package:islami/moduels/layouts/screens/quran_screen.dart';
 import 'package:islami/moduels/layouts/screens/reciter_screen.dart';
 import 'package:islami/moduels/layouts/screens/sebha_screen.dart';
 import 'package:islami/moduels/layouts/screens/setting_screen.dart';
+import 'package:islami/providers/my_provider.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 
 import '../../core/widgets/bg_widget.dart';
 
@@ -42,6 +44,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var pro=Provider.of<MyProvider>(context);
     return bg_widget(
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -52,6 +55,14 @@ class _LayoutScreenState extends State<LayoutScreen> {
                   Navigator.pushNamed(context, SettingScreen.routeName);
                 },
                 child: Lottie.asset(fit: BoxFit.cover,
+                    delegates: LottieDelegates(
+                      values: [
+                        ValueDelegate.color(
+                          const ['**'], // Change all colors in the animation
+                          value: pro.mode==ThemeMode.dark? Colors.white:Colors.black, // Set your desired color
+                        ),
+                      ]
+                    ),
                     "assets/icons/Animation - 1739711751213.json",width: 50.w,height: 50.h)),
           ],
           title: Text(

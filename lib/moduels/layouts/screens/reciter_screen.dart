@@ -42,53 +42,44 @@ class ReciterScreen extends StatelessWidget {
             return Column(
               children: [
                 Expanded(
-                  child: ListView.builder(
+                  child: ListView.separated(
+                    separatorBuilder: (context, index) => Column(
+                      children: [
+                        Divider(
+                          thickness: 3,
+                          indent: 30,
+                          endIndent: 30,
+                        ),
+                        SizedBox(height: 10.h,)
+                      ],
+                    ),
                     itemCount: pro.reciterModel.recitations!.length,
                     itemBuilder: (context, index) {
                       return InkWell(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                                textAlign: TextAlign.center,
+                                "${context.locale == Locale("ar") ? pro.reciterModel.recitations![index].translatedName!.name : pro.reciterModel.recitations![index].reciterName}",
+                                style: Theme.of(context).textTheme.bodySmall),
+
+                            Text(
+                        "${pro.reciterModel.recitations?[index]
+                            .style ?? ""}",
+                        style: Theme.of(context).textTheme.titleSmall,
+                      ),
+                          ],
+                        ),
                         onTap: () {
                           Navigator.push(
                               context, MaterialPageRoute(builder: (context) {
-                                print(pro.reciterModel.recitations![index].id);
+                            print(pro.reciterModel.recitations![index].id);
                             return ReciterSuraScreen(
-                              id: pro.reciterModel.recitations![index].id);
-                          },)
-                          );
+                                id: pro.reciterModel.recitations![index].id);
+                          },));
+                      // );
                         },
-                        child: Padding(
-                          padding: EdgeInsets.all(10.0.sp),
-                          child: Column(
-                            children: [
-                              Row(
-
-                                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      "${context.locale == Locale("ar") ? pro
-                                          .reciterModel.recitations![index]
-                                          .translatedName!.name : pro
-                                          .reciterModel.recitations![index]
-                                          .reciterName}",
-                                      style: Theme.of(context).textTheme.bodyMedium,
-                                    ),
-                                  ),
-
-                                  Text(
-                                    "${pro.reciterModel.recitations?[index]
-                                        .style ?? ""}",
-                                    style: Theme
-                                        .of(context)
-                                        .textTheme
-                                        .titleSmall,
-                                  ),
-                                ],
-                              ),
-                              Divider()
-                            ],
-                          ),
-                        ),
                       );
                     },
                   ),
@@ -101,3 +92,48 @@ class ReciterScreen extends StatelessWidget {
     );
   }
 }
+// InkWell(
+// onTap: () {
+// Navigator.push(
+// context, MaterialPageRoute(builder: (context) {
+// print(pro.reciterModel.recitations![index].id);
+// return ReciterSuraScreen(
+// id: pro.reciterModel.recitations![index].id);
+// },)
+// // );
+// },
+// child: Padding(
+// padding: EdgeInsets.all(10.0.sp),
+// child: Column(
+// children: [
+// Row(
+//
+// // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//
+// children: [
+// Expanded(
+// child: Text(
+// "${context.locale == Locale("ar") ? pro
+//     .reciterModel.recitations![index]
+//     .translatedName!.name : pro
+//     .reciterModel.recitations![index]
+//     .reciterName}",
+// style: Theme.of(context).textTheme.bodyMedium,
+// ),
+// ),
+//
+// Text(
+// "${pro.reciterModel.recitations?[index]
+//     .style ?? ""}",
+// style: Theme
+//     .of(context)
+//     .textTheme
+//     .titleSmall,
+// ),
+// ],
+// ),
+// Divider()
+// ],
+// ),
+// ),
+// );

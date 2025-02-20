@@ -43,7 +43,7 @@ class _QuranPlayerState extends State<QuranPlayer> {
     _player.onPositionChanged.listen((newPosition) {
       if (!mounted) return;
       setState(() {
-        _duration = newPosition;
+        _position = newPosition;
       });
     });
 

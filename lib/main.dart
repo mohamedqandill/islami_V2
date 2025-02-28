@@ -11,9 +11,9 @@ import 'package:islami/moduels/layouts/screens/hadeth_details.dart';
 import 'package:islami/moduels/layouts/screens/nabi_screen.dart';
 import 'package:islami/moduels/layouts/screens/sura_details.dart';
 import 'package:islami/moduels/splash/screens/splash_screen.dart';
-import 'package:islami/providers/local_notification.dart';
+
 import 'package:islami/providers/my_provider.dart';
-import 'package:islami/providers/notification_heper.dart';
+
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

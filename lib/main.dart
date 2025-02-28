@@ -31,10 +31,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  await Future.wait([
-    PushNotificationsService.init(),//2
-    LocalNotificationService.init(),//3
-  ]);
+
   var sharedPrefernces = await SharedPreferences.getInstance();
   await EasyLocalization.ensureInitialized();
   runApp(EasyLocalization(

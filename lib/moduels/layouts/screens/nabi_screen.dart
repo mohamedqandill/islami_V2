@@ -67,8 +67,8 @@ class _NabiScreenState extends State<NabiScreen> {
 
                     setState(() {});
                   },
-                  child: Text(
-                    "صلي علي النبي",
+                  child: Text(textAlign: TextAlign.center,
+                    "اللهم صلي علي سيدنا محمد",
                     style: pro.mode == ThemeMode.dark
                         ? TextStyle(
                             fontSize: 35.sp, fontWeight: FontWeight.bold)

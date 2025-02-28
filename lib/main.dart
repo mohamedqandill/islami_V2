@@ -11,20 +11,30 @@ import 'package:islami/moduels/layouts/screens/hadeth_details.dart';
 import 'package:islami/moduels/layouts/screens/nabi_screen.dart';
 import 'package:islami/moduels/layouts/screens/sura_details.dart';
 import 'package:islami/moduels/splash/screens/splash_screen.dart';
+import 'package:islami/providers/local_notification.dart';
 import 'package:islami/providers/my_provider.dart';
+import 'package:islami/providers/notification_heper.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'firebase_options.dart';
+import 'moduels/layouts/screens/azkar_after_salah.dart';
+import 'moduels/layouts/screens/doaa_screen.dart';
 import 'moduels/layouts/screens/prayer_time_screen.dart';
+import 'moduels/layouts/screens/quran_doaa_screen.dart';
 import 'moduels/layouts/screens/reciter_sura_screen.dart';
 import 'moduels/layouts/screens/setting_screen.dart';
+import 'moduels/layouts/screens/tasbeh_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await Future.wait([
+    PushNotificationsService.init(),//2
+    LocalNotificationService.init(),//3
+  ]);
   var sharedPrefernces = await SharedPreferences.getInstance();
   await EasyLocalization.ensureInitialized();
   runApp(EasyLocalization(
@@ -73,6 +83,10 @@ class MyApp extends StatelessWidget {
           PrayerTimeScreen.routeName: (context) => PrayerTimeScreen(),
           SettingScreen.routeName: (context) => SettingScreen(),
           ReciterSuraScreen.routeName: (context) => ReciterSuraScreen(),
+          DoaaScreen.routeName: (context) => DoaaScreen(),
+          AzkarAfterSalah.routeName: (context) => AzkarAfterSalah(),
+          QuranDoaa.routeName: (context) => QuranDoaa(),
+          TasbehScreen.routeName: (context) => TasbehScreen(),
         },
         initialRoute: SplashScreen.routeName,
         // localizationsDelegates: [

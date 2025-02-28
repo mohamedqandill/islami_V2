@@ -259,6 +259,165 @@ class QuranScreen extends StatelessWidget {
               image: AssetImage("assets/images/quran_header_icn.png"),
               width: 120.w,
             ),
+            Padding(
+              padding: EdgeInsets.all(8.0.sp),
+              child: SearchAnchor(
+                builder: (BuildContext context, SearchController controller) {
+                  return SearchBar(
+                    controller: controller,
+                    hintText: "Search...",
+                    onChanged: (query) {
+                      controller.openView();
+                    },
+                    onTap: () {
+                      controller.openView();
+                    },
+                  );
+                },
+                suggestionsBuilder: (BuildContext context, SearchController controller) {
+                  final query = controller.text.trim().toLowerCase();
+
+                  if (query.isEmpty) {
+                    return []; // لا تُظهر اقتراحات عندما يكون البحث فارغًا
+                  }
+
+                  final List<Map<String, dynamic>> filteredItems = [];
+
+                  for (int i = 0; i < arabicAuranSuras.length; i++) {
+                    if (arabicAuranSuras[i].toLowerCase().contains(query)) {
+                      filteredItems.add({
+                        "index": i,
+                        "sura": arabicAuranSuras[i],
+                        "ayaCount": AyaNumber[i]
+                      });
+                    }
+                  }
+
+                  return [
+                    Material(
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: filteredItems.length,
+                        itemBuilder: (context, index) {
+                          final item = filteredItems[index];
+                          return Container(
+                            margin: EdgeInsets.all(8.sp),
+                            padding: EdgeInsets.only(top: 4.sp),
+                            alignment: Alignment.center,
+                            width: double.infinity,
+                            // height: 60,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  bottomRight: Radius.circular(50.r),
+                                  bottomLeft: Radius.circular(20.r),
+                                  topLeft: Radius.circular(45.r),
+                                  topRight: Radius.circular(38.r),
+                                ),
+                                border: Border.all(
+                                    color: pro.mode == ThemeMode.dark
+                                        ? Color(0xffFACC1D)
+                                        : Color(0xffB7935F),
+                                    width: 1),
+                                color: pro.mode == ThemeMode.dark
+                                    ? Color(0xff141A2E)
+                                    : Color(0xffB7935F),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: pro.mode == ThemeMode.dark
+                                          ? Color(0xffFACC1D)
+                                          : Colors.amberAccent,
+                                      spreadRadius: 2,
+                                      blurRadius: 5)
+                                ]
+
+                              // gradient: LinearGradient(
+                              //  // colors: isDark?[Color(0xffFACC1D).withOpacity(0.7),Colors.grey.withOpacity(0.8).withOpacity(0.9)]:[Color(0xffB7935F),Colors.grey.withOpacity(0.9)],
+                              //   begin: Alignment.center,
+                              //   end: Alignment.bottomLeft,
+                              // )
+
+                            ),
+                            child: Column(
+                              children: [
+                                InkWell(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                            textAlign: TextAlign.center,
+                                            "${item["sura"]}",
+                                            style:
+                                            Theme.of(context).textTheme.bodyMedium),
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          textAlign: TextAlign.center,
+                                          "${item["ayaCount"]}",
+                                          style: Theme.of(context).textTheme.bodyMedium,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  onTap: () {
+                                    Navigator.pushNamed(
+                                      context,
+                                      SuraDetails.routeName,
+                                      arguments:
+                                          data(item["index"], item["sura"]),
+                                    );
+                                  },
+                                ),
+                                // Row(
+                                //   mainAxisAlignment: MainAxisAlignment.center,
+                                //   children: [
+                                //     Container(
+                                //
+                                //         child: Icon(Icons.star,size: 20,),
+                                //       margin: EdgeInsets.only(left: 30),
+                                //     ),
+                                //     Expanded(child: Divider(indent: 0,endIndent: 0,thickness: 5,color: Color(0xffB7935F),)),
+                                //     Container(
+                                //
+                                //         child: Icon(Icons.star,size: 20,),
+                                //     margin: EdgeInsets.only(right: 30),
+                                //     ),
+                                //
+                                //   ],
+                                // ),
+                                SizedBox(
+                                  height: 20.h,
+                                ),
+                              ],
+                            ),
+                          );
+
+                          //   ListTile(
+                          //   title: Text(
+                          //     item["sura"],
+                          //     textAlign: TextAlign.center,
+                          //     style: Theme.of(context).textTheme.bodyMedium,
+                          //   ),
+                          //   subtitle: Text(
+                          //     "عدد الآيات: ${item["ayaCount"]}",
+                          //     textAlign: TextAlign.center,
+                          //   ),
+                          //   onTap: () {
+                          //     Navigator.pushNamed(
+                          //       context,
+                          //       SuraDetails.routeName,
+                          //       arguments: data(item["index"], item["sura"]),
+                          //     );
+                          //   },
+                          // );
+                        },
+                      ),
+                    ),
+                  ];
+                },
+              ),
+            ),
+
             Divider(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -269,7 +428,6 @@ class QuranScreen extends StatelessWidget {
                 ),
                 Text("suraNum".tr(),
                     style: Theme.of(context).textTheme.titleMedium),
-
               ],
             ),
             Divider(),
@@ -328,7 +486,7 @@ class QuranScreen extends StatelessWidget {
                                     textAlign: TextAlign.center,
                                     "${arabicAuranSuras[index]}",
                                     style:
-                                    Theme.of(context).textTheme.bodyMedium),
+                                        Theme.of(context).textTheme.bodyMedium),
                               ),
                               Expanded(
                                 child: Text(
@@ -337,8 +495,6 @@ class QuranScreen extends StatelessWidget {
                                   style: Theme.of(context).textTheme.bodyMedium,
                                 ),
                               ),
-
-
                             ],
                           ),
                           onTap: () {

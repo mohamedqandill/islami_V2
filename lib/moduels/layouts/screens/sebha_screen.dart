@@ -54,19 +54,7 @@ class _SebhaScreenState extends State<SebhaScreen> {
                                 : AssetImage("assets/images/body of seb7a.png")),
                       ),
                     ),
-                    Container(
-                      margin: EdgeInsets.only(left: 80.sp, right: 50.sp, top: 10.sp),
-                      child: Image(
-                        // alignment: Alignment.topCenter,
-                        fit: BoxFit.cover,
-                          image: pro.mode == ThemeMode.dark
-                            ? AssetImage(
-                                "assets/icons/head of seb7a.png",
-                              )
-                            : AssetImage("assets/images/head of seb7a.png"),
-                        height: 100.h,
-                      ),
-                    ),
+
                   ],
                 ),
                 Text(

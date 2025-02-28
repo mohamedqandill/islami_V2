@@ -33,8 +33,10 @@ class ReciterScreen extends StatelessWidget {
                     Icon(
                       Icons.error,
                       size: 30,
+                      color: Colors.red,
                     ),
-                    Text(snapshot.error.toString()),
+                    Text("No Internet Connection", style: const TextStyle(color: Colors.red)),
+
                   ],
                 ),
               );
@@ -45,10 +47,9 @@ class ReciterScreen extends StatelessWidget {
                   child: ListView.separated(
                     separatorBuilder: (context, index) => Column(
                       children: [
-                        Divider(
+                        const Divider(
                           thickness: 3,
-                          indent: 30,
-                          endIndent: 30,
+
                         ),
                         SizedBox(height: 10.h,)
                       ],

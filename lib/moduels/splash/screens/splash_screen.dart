@@ -1,10 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:islami/moduels/layouts/layout_screen.dart';
 import 'package:islami/moduels/layouts/screens/hadeth_details.dart';
 import 'package:islami/moduels/layouts/screens/hadeth_screen.dart';
 import 'package:islami/moduels/layouts/screens/sura_details.dart';
+import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String routeName = "splash";
@@ -29,8 +31,27 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Image.asset("assets/images/bg (1).png"),
-        Center(child: Image.asset("assets/icons/logo.png")),
+        Image.asset(
+          "assets/images/bg (1).png",
+          width: double.infinity,
+        ),
+        Stack(
+          children: [
+            Center(child: Image.asset("assets/icons/logo.png")),
+            Lottie.asset(
+              delegates: LottieDelegates(
+                  values: [
+                    ValueDelegate.color(
+                      const ['**'], // Change all colors in the animation
+                      value: Colors.black // Set your desired color
+                    ),
+                  ]
+              ),
+                "assets/icons/Animation - 1740747301873.json",
+              width: 400.w,height: 600.h
+                ),
+          ],
+        ),
       ],
     );
   }

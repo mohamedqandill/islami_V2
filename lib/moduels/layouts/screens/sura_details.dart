@@ -71,7 +71,7 @@ class SuraDetails extends StatelessWidget {
                         boxShadow: [
                           BoxShadow(
                             color: Color(0xffB7935F),
-                            blurRadius: 15.sp,
+                            blurRadius: 5.sp,
                             blurStyle: BlurStyle.outer,
                           ),
                         ],
@@ -109,6 +109,7 @@ class SuraDetails extends StatelessWidget {
                                     '${i + 1}',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
+
                                         color: pro.mode == ThemeMode.dark
                                             ? Colors.white
                                             : Colors.black,

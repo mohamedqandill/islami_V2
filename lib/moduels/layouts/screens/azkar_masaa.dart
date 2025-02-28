@@ -90,7 +90,7 @@ class _AzkarMasaaState extends State<AzkarMasaa> {
                                   color: pro.mode == ThemeMode.dark
                                       ? azkarTimes[index]==0? Colors.grey:Colors.red
                                       : Color(0xffB7935F),
-                                  blurRadius: 12.sp,
+                                  blurRadius: 5.sp,
                                   spreadRadius: 1.sp,
                                   // blurStyle: BlurStyle.outer,
                                 ),
@@ -105,28 +105,27 @@ class _AzkarMasaaState extends State<AzkarMasaa> {
                                 topRight: Radius.circular(20.r),
                               ),
                             ),
-                            child: Text(
-                              "${azkaar[index]}",
-                              textDirection: TextDirection.rtl,
-                              style: Theme.of(context).textTheme.bodyMedium,
+                            child: Column(
+                              children: [
+                                Text(
+                                  "${azkaar[index]}",
+                                  textDirection: TextDirection.rtl,
+                                  style: Theme.of(context).textTheme.bodyLarge,
+                                ),
+                                Divider(
+                                  thickness: 1,
+                                  indent: 20,
+                                  endIndent: 20,
+                                ),
+                                Text(" ${azkarTimes[index]} مرات  " )
+
+                              ],
                             ),
                           ),
                         ),
                       ),
                     ),
-                    Container(
-                      child: Center(
-                        child: Text(
-                          azkarTimes[index].toString(),
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ),
-                      width: 30.w,
-                      height: 30.h,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50.r),
-                           color: azkarTimes[index]==0? Colors.grey: Color(0xffB7935F)),
-                    )
+
                   ],
                 );
               },

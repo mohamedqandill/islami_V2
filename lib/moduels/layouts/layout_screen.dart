@@ -11,6 +11,7 @@ import 'package:islami/moduels/layouts/screens/setting_screen.dart';
 import 'package:islami/providers/my_provider.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 import '../../core/widgets/bg_widget.dart';
 
@@ -36,7 +37,6 @@ List<String> titels = [
   'appBarHadeth',
   'appBarTaspeh',
   'appBarReciter'
-
 ];
 
 class _LayoutScreenState extends State<LayoutScreen> {
@@ -44,71 +44,111 @@ class _LayoutScreenState extends State<LayoutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var pro=Provider.of<MyProvider>(context);
+    var pro = Provider.of<MyProvider>(context);
     return bg_widget(
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          actions: [
-            InkWell(
-                onTap: () {
-                  Navigator.pushNamed(context, SettingScreen.routeName);
-                },
-                child: Lottie.asset(fit: BoxFit.cover,
-                    delegates: LottieDelegates(
-                      values: [
-                        ValueDelegate.color(
-                          const ['**'], // Change all colors in the animation
-                          value: pro.mode==ThemeMode.dark? Colors.white:Colors.black, // Set your desired color
-                        ),
-                      ]
-                    ),
-                    "assets/icons/Animation - 1739711751213.json",width: 50.w,height: 50.h)),
-          ],
-          title: Text(
-            titels[selectedIndex].tr(),
-            style: Theme.of(context).textTheme.titleLarge,
+      child: Stack(
+        children: [
+          Scaffold(
+            backgroundColor: Colors.transparent,
+            appBar: AppBar(
+              actions: [
+                InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, SettingScreen.routeName);
+                    },
+                    child: Lottie.asset(
+                        fit: BoxFit.cover,
+                        delegates: LottieDelegates(values: [
+                          ValueDelegate.color(
+                            const ['**'],
+                            // Change all colors in the animation
+                            value: pro.mode == ThemeMode.dark
+                                ? Colors.white
+                                : Colors.black, // Set your desired color
+                          ),
+                        ]),
+                        "assets/icons/Animation - 1739711751213.json",
+                        width: 50.w,
+                        height: 50.h)),
+              ],
+              title: Text(
+                titels[selectedIndex].tr(),
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+            ),
+            bottomNavigationBar: SalomonBottomBar(
+              backgroundColor:  pro.mode==ThemeMode.dark? Color(0xff141A2E): Color(0xffB7935F),
+              onTap: (value) {
+                selectedIndex = value;
+                setState(() {});
+              },
+
+              currentIndex: selectedIndex,
+
+              // curveSize: 150,
+              // elevation: 10,
+
+              // backgroundColor: Color(0xff141A2E),
+              // color: Colors.black,
+              // cornerRadius: 30,
+              items: [
+                SalomonBottomBarItem(
+                    icon: ImageIcon(
+                        size: 35.sp, AssetImage("assets/icons/icon_quran.png")),
+                    title: Text("${"quranTap".tr()}"),
+                    selectedColor:pro.mode == ThemeMode.dark
+                        ? Color(0xffFACC1D)
+                        : Colors.white),
+                SalomonBottomBarItem(
+                    icon: ImageIcon(
+                        size: 30.sp,
+                        AssetImage("assets/icons/icons8-home-64.png")),
+                    title: Text(""),
+                    selectedColor: pro.mode == ThemeMode.dark
+                        ? Color(0xffFACC1D)
+                        : Colors.white),
+                SalomonBottomBarItem(
+                    icon: ImageIcon(
+                        size: 32.sp,
+                        AssetImage("assets/icons/icon_hadeth.png")),
+                    title: Text("${'hadethTap'.tr()}"),
+                    selectedColor: pro.mode == ThemeMode.dark
+                        ? Color(0xffFACC1D)
+                        : Colors.white),
+                SalomonBottomBarItem(
+                    icon: ImageIcon(
+                        size: 32.sp, AssetImage("assets/icons/icon_sebha.png")),
+                    title: Text("${"tasbehTap".tr()}"),
+                    selectedColor: pro.mode == ThemeMode.dark
+                        ? Color(0xffFACC1D)
+                        : Colors.white),
+                SalomonBottomBarItem(
+                    icon: Icon(size: 32.sp, Icons.audiotrack),
+                    title: Text("${"reciterTap".tr()}"),
+                    selectedColor: pro.mode == ThemeMode.dark
+                        ? Color(0xffFACC1D)
+                        : Colors.white),
+              ],
+            ),
+            body: Column(
+              children: [
+                Expanded(child: screen[selectedIndex]),
+              ],
+            ),
           ),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          onTap: (value) {
-            selectedIndex = value;
-            setState(() {});
-          },
-
-          currentIndex: selectedIndex,
-
-          // curveSize: 150,
-          // elevation: 10,
-
-          // backgroundColor: Color(0xff141A2E),
-          // color: Colors.black,
-          // cornerRadius: 30,
-          items: [
-            BottomNavigationBarItem(
-                icon: ImageIcon(
-                    size: 40.sp, AssetImage("assets/icons/icon_quran.png")),
-                label: "quranTap".tr()),
-            BottomNavigationBarItem(
-                icon: ImageIcon(
-                    size: 40.sp, AssetImage("assets/icons/icons8-home-64.png")),
-                label: ""),
-            BottomNavigationBarItem(
-                icon: ImageIcon(
-                    size: 40.sp, AssetImage("assets/icons/icon_hadeth.png")),
-                label: 'hadethTap'.tr()),
-            BottomNavigationBarItem(
-              icon: ImageIcon(
-                  size: 40.sp, AssetImage("assets/icons/icon_sebha.png")),
-              label: "tasbehTap".tr(),
+          IgnorePointer(
+            ignoring: true,
+            child: Lottie.asset(
+              delegates: LottieDelegates(values: [
+                ValueDelegate.color(
+                    const ['**'], // Change all colors in the animation
+                    value: Colors.black // Set your desired color
+                    ),
+              ]),
+              "assets/icons/Animation - 1740746275195.json",
             ),
-            BottomNavigationBarItem(
-              icon: Icon(size: 30.sp, Icons.audiotrack),
-              label: "reciterTap".tr(),
-            ),
-          ],
-        ),
-        body: screen[selectedIndex],
+          ),
+        ],
       ),
     );
   }

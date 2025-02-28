@@ -58,6 +58,13 @@ dependencies:
   geolocator:
   geocoding:
   audioplayers: ^6.1.2
+  path_provider: ^2.1.5
+  workmanager:
+  background_downloader:
+  firebase_messaging:
+  googleapis_auth:
+  salomon_bottom_bar:
+  flutter_local_notifications: ^18.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -72,15 +79,22 @@ dev_dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: "assets/images/Frame 1.png"  # مسار صورة اللوجو الخاصة بك
-  #adaptive_icon_background: "#141A2E" # لون خلفية اللوجو للأندرويد (اختياريer.p)
-  adaptive_icon_foreground: "assets/images/Frame 1.png" # للأندرويد (اختيار
+  image_path_android: "assets/images/logo 10.png"
+
+  image_path_ios: "assets/images/logo 10.png"
+  adaptive_icon_background: "#141A2E"  # خلفية الأيقونة
+  adaptive_icon_foreground: "assets/images/logo 10.png" # مسار صورة اللوجو الخاصة بك
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
 flutter:
+  fonts:
+    - family: AyatQuran
+      fonts:
+        - asset: assets/icons/AyatQuran11-m2Lj9.ttf
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
@@ -97,6 +111,7 @@ flutter:
     - assets/suras/
     - assets/hadeth/
     - assets/translations/
+    - assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

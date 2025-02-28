@@ -25,7 +25,7 @@ class AppTheme {
       textTheme: TextTheme(
           bodyLarge: GoogleFonts.amiri(
 
-              fontSize: 20.sp, fontWeight: FontWeight.w500, color: Colors.black),
+              fontSize: 22.sp, fontWeight: FontWeight.w500, color: Colors.black),
           bodyMedium: TextStyle(
               fontSize: 25.sp, fontWeight: FontWeight.w700, color: Colors.black),
           titleMedium: TextStyle(
@@ -56,6 +56,11 @@ class AppTheme {
           showUnselectedLabels: false,
           backgroundColor: lightPrimary,
           selectedIconTheme: IconThemeData(size: 32.sp)),
+      bottomAppBarTheme: BottomAppBarTheme(
+
+          color: lightPrimary,
+
+      ),
       dividerTheme: DividerThemeData(thickness: 5.w, color: Color(0xffB7935F)),
       colorScheme: ColorScheme.fromSeed(
           seedColor: lightPrimary,
@@ -64,6 +69,11 @@ class AppTheme {
           secondary: lightPrimary,
           onSecondary: Colors.black));
   static ThemeData darkTheme = ThemeData(
+      bottomAppBarTheme: BottomAppBarTheme(
+
+        color: darkPrimary,
+
+      ),
       textTheme: TextTheme(
           bodyLarge: GoogleFonts.elMessiri(
               fontSize: 22.sp, fontWeight: FontWeight.w500, color: Colors.white),

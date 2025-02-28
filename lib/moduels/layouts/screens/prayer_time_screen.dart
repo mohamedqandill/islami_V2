@@ -77,7 +77,7 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Icon(Icons.error, size: 30, color: Colors.red),
-              Text(errorMessage!, style: const TextStyle(color: Colors.red)),
+              Text("No Internet Connection", style: const TextStyle(color: Colors.red)),
             ],
           ),
         )

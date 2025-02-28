@@ -55,7 +55,7 @@ class _HadethDetailsState extends State<HadethDetails> {
               boxShadow: [
                 BoxShadow(
                   color: Color(0xffB7935F),
-                  blurRadius: 10.sp,
+                  blurRadius: 5.sp,
                   blurStyle: BlurStyle.outer,
                 ),
               ],

@@ -39,19 +39,31 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             Center(child: Image.asset("assets/icons/logo.png")),
             Lottie.asset(
-              delegates: LottieDelegates(
-                  values: [
-                    ValueDelegate.color(
+                delegates: LottieDelegates(values: [
+                  ValueDelegate.color(
                       const ['**'], // Change all colors in the animation
                       value: Colors.black // Set your desired color
-                    ),
-                  ]
-              ),
+                      ),
+                ]),
                 "assets/icons/Animation - 1740747301873.json",
-              width: 400.w,height: 600.h
-                ),
+                width: 400.w,
+                height: 600.h),
           ],
         ),
+        Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text(
+                "Made by Mohamed Qandill",
+                style: TextStyle(
+                    color: Color(0xffFACC1D),
+                    fontSize: 21.sp,
+                    decoration: TextDecoration.none),
+              ),
+            ],
+          ),
+        )
       ],
     );
   }

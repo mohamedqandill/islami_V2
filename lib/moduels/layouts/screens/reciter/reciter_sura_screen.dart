@@ -1,18 +1,16 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:islami/core/widgets/bg_widget.dart';
-import 'package:islami/main.dart';
 import 'package:provider/provider.dart';
 
-import '../../../providers/my_provider.dart';
+import '../../../../providers/my_provider.dart';
 import 'audio_quran_screen.dart';
 
 class ReciterSuraScreen extends StatelessWidget {
   static const String routeName = "surasReciter";
   final int? id;
 
-  const ReciterSuraScreen({ this.id = 0, super.key});
+  const ReciterSuraScreen({this.id = 0, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -155,14 +153,15 @@ class ReciterSuraScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (
-                            context) {
-                          return QuranPlayer(
-                            suraName: arabicAuranSuras[index],
-                            id:id! ,
-                            chapterId: index+1,
-                          );
-                        },));
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return QuranPlayer(
+                              suraName: arabicAuranSuras[index],
+                              id: id!,
+                              chapterId: index + 1,
+                            );
+                          },
+                        ));
                       },
                       child: Padding(
                         padding: EdgeInsets.all(10.0.sp),
@@ -171,7 +170,7 @@ class ReciterSuraScreen extends StatelessWidget {
                             Center(
                               child: Text(
                                 "${arabicAuranSuras[index]}",
-                                style:Theme.of(context).textTheme.bodyMedium,
+                                style: Theme.of(context).textTheme.bodyMedium,
                               ),
                             ),
                             Divider()
@@ -183,8 +182,7 @@ class ReciterSuraScreen extends StatelessWidget {
                 ),
               )
             ],
-          )
-      ),
+          )),
     );
   }
 }

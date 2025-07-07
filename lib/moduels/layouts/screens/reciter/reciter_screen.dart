@@ -2,11 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:islami/core/widgets/bg_widget.dart';
-import 'package:islami/main.dart';
-import 'package:islami/moduels/layouts/screens/reciter_sura_screen.dart';
+import 'package:islami/moduels/layouts/screens/reciter/reciter_sura_screen.dart';
 import 'package:provider/provider.dart';
 
-import '../../../providers/my_provider.dart';
+import '../../../../providers/my_provider.dart';
 
 class ReciterScreen extends StatelessWidget {
   const ReciterScreen({super.key});
@@ -35,8 +34,8 @@ class ReciterScreen extends StatelessWidget {
                       size: 30,
                       color: Colors.red,
                     ),
-                    Text("No Internet Connection", style: const TextStyle(color: Colors.red)),
-
+                    Text("No Internet Connection",
+                        style: const TextStyle(color: Colors.red)),
                   ],
                 ),
               );
@@ -49,9 +48,10 @@ class ReciterScreen extends StatelessWidget {
                       children: [
                         const Divider(
                           thickness: 3,
-
                         ),
-                        SizedBox(height: 10.h,)
+                        SizedBox(
+                          height: 10.h,
+                        )
                       ],
                     ),
                     itemCount: pro.reciterModel.recitations!.length,
@@ -64,22 +64,21 @@ class ReciterScreen extends StatelessWidget {
                                 textAlign: TextAlign.center,
                                 "${context.locale == Locale("ar") ? pro.reciterModel.recitations![index].translatedName!.name : pro.reciterModel.recitations![index].reciterName}",
                                 style: Theme.of(context).textTheme.bodySmall),
-
                             Text(
-                        "${pro.reciterModel.recitations?[index]
-                            .style ?? ""}",
-                        style: Theme.of(context).textTheme.titleSmall,
-                      ),
+                              "${pro.reciterModel.recitations?[index].style ?? ""}",
+                              style: Theme.of(context).textTheme.titleSmall,
+                            ),
                           ],
                         ),
                         onTap: () {
-                          Navigator.push(
-                              context, MaterialPageRoute(builder: (context) {
-                            print(pro.reciterModel.recitations![index].id);
-                            return ReciterSuraScreen(
-                                id: pro.reciterModel.recitations![index].id);
-                          },));
-                      // );
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              print(pro.reciterModel.recitations![index].id);
+                              return ReciterSuraScreen(
+                                  id: pro.reciterModel.recitations![index].id);
+                            },
+                          ));
+                          // );
                         },
                       );
                     },

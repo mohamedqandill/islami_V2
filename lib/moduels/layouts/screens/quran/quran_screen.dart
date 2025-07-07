@@ -1,14 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:islami/main.dart';
-import 'package:islami/main.dart';
-import 'package:islami/main.dart';
-import 'package:islami/main.dart';
-import 'package:islami/moduels/layouts/screens/sura_details.dart';
+import 'package:islami/moduels/layouts/screens/quran/sura_details.dart';
 import 'package:provider/provider.dart';
 
-import '../../../providers/my_provider.dart';
+import '../../../../providers/my_provider.dart';
 
 class QuranScreen extends StatelessWidget {
   QuranScreen({super.key});
@@ -274,7 +270,8 @@ class QuranScreen extends StatelessWidget {
                     },
                   );
                 },
-                suggestionsBuilder: (BuildContext context, SearchController controller) {
+                suggestionsBuilder:
+                    (BuildContext context, SearchController controller) {
                   final query = controller.text.trim().toLowerCase();
 
                   if (query.isEmpty) {
@@ -295,129 +292,135 @@ class QuranScreen extends StatelessWidget {
 
                   return [
                     Material(
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: filteredItems.length,
-                        itemBuilder: (context, index) {
-                          final item = filteredItems[index];
-                          return Container(
-                            margin: EdgeInsets.all(8.sp),
-                            padding: EdgeInsets.only(top: 4.sp),
-                            alignment: Alignment.center,
-                            width: double.infinity,
-                            // height: 60,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                  bottomRight: Radius.circular(50.r),
-                                  bottomLeft: Radius.circular(20.r),
-                                  topLeft: Radius.circular(45.r),
-                                  topRight: Radius.circular(38.r),
-                                ),
-                                border: Border.all(
-                                    color: pro.mode == ThemeMode.dark
-                                        ? Color(0xffFACC1D)
-                                        : Color(0xffB7935F),
-                                    width: 1),
-                                color: pro.mode == ThemeMode.dark
-                                    ? Color(0xff141A2E)
-                                    : Color(0xffB7935F),
-                                boxShadow: [
-                                  BoxShadow(
+                      child: SizedBox(
+                        height: 600.h,
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: filteredItems.length,
+                          itemBuilder: (context, index) {
+                            final item = filteredItems[index];
+                            return Container(
+                              margin: EdgeInsets.all(8.sp),
+                              padding: EdgeInsets.only(top: 4.sp),
+                              alignment: Alignment.center,
+                              width: double.infinity,
+                              // height: 60,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    bottomRight: Radius.circular(50.r),
+                                    bottomLeft: Radius.circular(20.r),
+                                    topLeft: Radius.circular(45.r),
+                                    topRight: Radius.circular(38.r),
+                                  ),
+                                  border: Border.all(
                                       color: pro.mode == ThemeMode.dark
                                           ? Color(0xffFACC1D)
-                                          : Colors.amberAccent,
-                                      spreadRadius: 2,
-                                      blurRadius: 5)
-                                ]
+                                          : Color(0xffB7935F),
+                                      width: 1),
+                                  color: pro.mode == ThemeMode.dark
+                                      ? Color(0xff141A2E)
+                                      : Color(0xffB7935F),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: pro.mode == ThemeMode.dark
+                                            ? Color(0xffFACC1D)
+                                            : Colors.amberAccent,
+                                        spreadRadius: 2,
+                                        blurRadius: 5)
+                                  ]
 
-                              // gradient: LinearGradient(
-                              //  // colors: isDark?[Color(0xffFACC1D).withOpacity(0.7),Colors.grey.withOpacity(0.8).withOpacity(0.9)]:[Color(0xffB7935F),Colors.grey.withOpacity(0.9)],
-                              //   begin: Alignment.center,
-                              //   end: Alignment.bottomLeft,
-                              // )
+                                  // gradient: LinearGradient(
+                                  //  // colors: isDark?[Color(0xffFACC1D).withOpacity(0.7),Colors.grey.withOpacity(0.8).withOpacity(0.9)]:[Color(0xffB7935F),Colors.grey.withOpacity(0.9)],
+                                  //   begin: Alignment.center,
+                                  //   end: Alignment.bottomLeft,
+                                  // )
 
-                            ),
-                            child: Column(
-                              children: [
-                                InkWell(
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                    children: [
-                                      Expanded(
-                                        child: Text(
-                                            textAlign: TextAlign.center,
-                                            "${item["sura"]}",
-                                            style:
-                                            Theme.of(context).textTheme.bodyMedium),
-                                      ),
-                                      Expanded(
-                                        child: Text(
-                                          textAlign: TextAlign.center,
-                                          "${item["ayaCount"]}",
-                                          style: Theme.of(context).textTheme.bodyMedium,
-                                        ),
-                                      ),
-                                    ],
                                   ),
-                                  onTap: () {
-                                    Navigator.pushNamed(
-                                      context,
-                                      SuraDetails.routeName,
-                                      arguments:
-                                          data(item["index"], item["sura"]),
-                                    );
-                                  },
-                                ),
-                                // Row(
-                                //   mainAxisAlignment: MainAxisAlignment.center,
-                                //   children: [
-                                //     Container(
-                                //
-                                //         child: Icon(Icons.star,size: 20,),
-                                //       margin: EdgeInsets.only(left: 30),
-                                //     ),
-                                //     Expanded(child: Divider(indent: 0,endIndent: 0,thickness: 5,color: Color(0xffB7935F),)),
-                                //     Container(
-                                //
-                                //         child: Icon(Icons.star,size: 20,),
-                                //     margin: EdgeInsets.only(right: 30),
-                                //     ),
-                                //
-                                //   ],
-                                // ),
-                                SizedBox(
-                                  height: 20.h,
-                                ),
-                              ],
-                            ),
-                          );
+                              child: Column(
+                                children: [
+                                  InkWell(
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                              textAlign: TextAlign.center,
+                                              "${item["sura"]}",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodyMedium),
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                            textAlign: TextAlign.center,
+                                            "${item["ayaCount"]}",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                        context,
+                                        SuraDetails.routeName,
+                                        arguments:
+                                            data(item["index"], item["sura"]),
+                                      );
+                                    },
+                                  ),
+                                  // Row(
+                                  //   mainAxisAlignment: MainAxisAlignment.center,
+                                  //   children: [
+                                  //     Container(
+                                  //
+                                  //         child: Icon(Icons.star,size: 20,),
+                                  //       margin: EdgeInsets.only(left: 30),
+                                  //     ),
+                                  //     Expanded(child: Divider(indent: 0,endIndent: 0,thickness: 5,color: Color(0xffB7935F),)),
+                                  //     Container(
+                                  //
+                                  //         child: Icon(Icons.star,size: 20,),
+                                  //     margin: EdgeInsets.only(right: 30),
+                                  //     ),
+                                  //
+                                  //   ],
+                                  // ),
+                                  SizedBox(
+                                    height: 20.h,
+                                  ),
+                                ],
+                              ),
+                            );
 
-                          //   ListTile(
-                          //   title: Text(
-                          //     item["sura"],
-                          //     textAlign: TextAlign.center,
-                          //     style: Theme.of(context).textTheme.bodyMedium,
-                          //   ),
-                          //   subtitle: Text(
-                          //     "عدد الآيات: ${item["ayaCount"]}",
-                          //     textAlign: TextAlign.center,
-                          //   ),
-                          //   onTap: () {
-                          //     Navigator.pushNamed(
-                          //       context,
-                          //       SuraDetails.routeName,
-                          //       arguments: data(item["index"], item["sura"]),
-                          //     );
-                          //   },
-                          // );
-                        },
+                            //   ListTile(
+                            //   title: Text(
+                            //     item["sura"],
+                            //     textAlign: TextAlign.center,
+                            //     style: Theme.of(context).textTheme.bodyMedium,
+                            //   ),
+                            //   subtitle: Text(
+                            //     "عدد الآيات: ${item["ayaCount"]}",
+                            //     textAlign: TextAlign.center,
+                            //   ),
+                            //   onTap: () {
+                            //     Navigator.pushNamed(
+                            //       context,
+                            //       SuraDetails.routeName,
+                            //       arguments: data(item["index"], item["sura"]),
+                            //     );
+                            //   },
+                            // );
+                          },
+                        ),
                       ),
                     ),
                   ];
                 },
               ),
             ),
-
             Divider(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,

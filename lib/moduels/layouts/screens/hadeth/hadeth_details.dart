@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:islami/core/widgets/bg_widget.dart';
-import 'package:islami/main.dart';
 import 'package:islami/moduels/hadeth_models.dart';
 import 'package:provider/provider.dart';
 
-import '../../../providers/my_provider.dart';
+import '../../../../providers/my_provider.dart';
 
 class HadethDetails extends StatefulWidget {
   static const String routeName = "hadethDetails";
@@ -17,7 +16,6 @@ class HadethDetails extends StatefulWidget {
 }
 
 class _HadethDetailsState extends State<HadethDetails> {
-
   @override
   Widget build(BuildContext context) {
     var model = ModalRoute.of(context)?.settings.arguments as hadethModel;
@@ -32,9 +30,8 @@ class _HadethDetailsState extends State<HadethDetails> {
                 setState(() {});
               },
               child: Icon(
-                Icons.arrow_back,color: pro.mode == ThemeMode.dark
-                  ? Colors.white
-                  : Colors.black,
+                Icons.arrow_back,
+                color: pro.mode == ThemeMode.dark ? Colors.white : Colors.black,
               )),
           title: Column(
             children: [

@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:islami/core/widgets/bg_widget.dart';
 import 'package:provider/provider.dart';
 
-import '../../../providers/my_provider.dart';
+import '../../../../providers/my_provider.dart';
 
 class DoaaScreen extends StatefulWidget {
   static const String routeName = "doaa";
@@ -73,11 +73,9 @@ class _DoaaScreenState extends State<DoaaScreen> {
 اللَّهُمَّ قَنِّعْنِي بِمَا رَزَقْتَنِي ، وَبَارِكْ لِي فِيْهِ ، وَاخْلُفْ عَلَيَّ كُلّ غَائِبَةٍ لِي مِنْكَ بِخَيرٍ.
 اللَّهُمَّ رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّة أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَاماً.
 اللَّهُمَّ يَا مَنْ تُسَبِّحُ لَهُ السَّمَاوَاتُ بِنُجُومِهَا وَأَبْرَاجِهَا ، وَالأَرْضُ بِسُهُولِـــهَا وَفِجَاجِهَا ، وَالبِحَارُ بِأَحْيَائِهَا وَأَمْوَاجِهَا ، وَالجِبَالُ بِقِمَمِهَا وَأَوْتَادِهَا ، وَالأَشْجَارُ بِفُرُوعِهَا وَثِمَارِهَا ، وَالسِّبَاعُ فِي فَلَوَاتِهَا ، وَالطَّيْرُ فِي وَكَنَاتِهَا ، يَا مَنْ تُسَبِّحُ لَهُ الذَّرَّاتُ عَلَى صِغََرِهَا ، وَالمَجَرَّاتُ عَلَى كِبَرِهَـا ، يَا مَنْ تُسَبِّحُ لَهُ السَّمَاوَاتُ السَّبْعُ وَالأَرْضُ وَمَنْ فِيهِنَّ ، وِإنْ مِنْ شَيءٍ إِلاَّ يُسَبِّحُ بِحَمْدِه.""",
-
   ];
-  List<int> doaaTimes=[1,1,1,1,1,1,1,1,1,1,1,1];
+  List<int> doaaTimes = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
   int index = 0;
-
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +110,7 @@ class _DoaaScreenState extends State<DoaaScreen> {
                   children: [
                     InkWell(
                       onTap: () {
-                        if (doaaTimes [index]> 0) {
+                        if (doaaTimes[index] > 0) {
                           doaaTimes[index]--;
                           setState(() {});
                         }

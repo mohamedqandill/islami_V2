@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:islami/main.dart';
-import 'package:islami/moduels/layouts/screens/hadeth_details.dart';
+import 'package:islami/moduels/layouts/screens/hadeth/hadeth_details.dart';
 
-import '../../hadeth_models.dart';
+import '../../../hadeth_models.dart';
 
 class HadethScreen extends StatefulWidget {
   HadethScreen({super.key});
@@ -72,7 +70,7 @@ class _HadethScreenState extends State<HadethScreen> {
   Future<void> readHadeth() async {
     String hadeth = await rootBundle.loadString("assets/hadeth/ahadeth.txt");
     List<String> hadethDetail = hadeth.split("#");
-    for (int i = 0; i < hadethDetail.length ; i++) {
+    for (int i = 0; i < hadethDetail.length; i++) {
       String hadethOne = hadethDetail[i];
       List<String> hadethLines = hadethOne.trim().split("\n");
       String hadethTitle = hadethLines[0];

@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:islami/core/theme/app_theme.dart';
-import 'package:islami/main.dart';
 import 'package:provider/provider.dart';
 
-import '../../../providers/my_provider.dart';
+import '../../../../providers/my_provider.dart';
 
 class SebhaScreen extends StatefulWidget {
   SebhaScreen({super.key});
@@ -51,10 +50,10 @@ class _SebhaScreenState extends State<SebhaScreen> {
                             height: 200.h,
                             image: pro.mode == ThemeMode.dark
                                 ? AssetImage("assets/icons/body of seb7a.png")
-                                : AssetImage("assets/images/body of seb7a.png")),
+                                : AssetImage(
+                                    "assets/images/body of seb7a.png")),
                       ),
                     ),
-
                   ],
                 ),
                 Text(
@@ -99,17 +98,17 @@ class _SebhaScreenState extends State<SebhaScreen> {
             Positioned(
               bottom: 100.sp,
               right: 0,
-
-              child: IconButton(onPressed: () {
-                counter=0;
-                turns=0.0;
-                index=0;
-                setState(() {
-
-                });
-
-
-              }, icon: Icon(Icons.repeat,size: 25.sp,)),
+              child: IconButton(
+                  onPressed: () {
+                    counter = 0;
+                    turns = 0.0;
+                    index = 0;
+                    setState(() {});
+                  },
+                  icon: Icon(
+                    Icons.repeat,
+                    size: 25.sp,
+                  )),
             )
           ],
         ),

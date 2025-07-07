@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:islami/core/widgets/bg_widget.dart';
-import 'package:islami/main.dart';
 import 'package:islami/providers/my_provider.dart';
 import 'package:provider/provider.dart';
 
-import '../../../core/theme/app_theme.dart';
+import '../../../../core/theme/app_theme.dart';
 
 class NabiScreen extends StatefulWidget {
   static const String routeName = "nabiScreen";
@@ -43,13 +42,11 @@ class _NabiScreenState extends State<NabiScreen> {
             children: [
               Text(
                 "الصلاه علي النبي ",
-                style:
-                    TextStyle(fontSize: 30.sp, fontWeight: FontWeight.w800),
+                style: TextStyle(fontSize: 30.sp, fontWeight: FontWeight.w800),
               ),
               Text(
                 "$counter",
-                style:
-                    TextStyle(fontSize: 50.sp, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 50.sp, fontWeight: FontWeight.bold),
               ),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -67,7 +64,8 @@ class _NabiScreenState extends State<NabiScreen> {
 
                     setState(() {});
                   },
-                  child: Text(textAlign: TextAlign.center,
+                  child: Text(
+                    textAlign: TextAlign.center,
                     "اللهم صلي علي سيدنا محمد",
                     style: pro.mode == ThemeMode.dark
                         ? TextStyle(

@@ -9,6 +9,7 @@ plugins {
 }
 
 android {
+    namespace "com.crazecoder.flutter_native_timezone"
     namespace = "com.example.islami"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion

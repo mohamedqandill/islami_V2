@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:islami/core/widgets/bg_widget.dart';
 import 'package:provider/provider.dart';
 
-import '../../../providers/my_provider.dart';
+import '../../../../providers/my_provider.dart';
 
 class AzkarMasaa extends StatefulWidget {
   static const String routeName = "azkarMasaa";
@@ -52,9 +52,8 @@ class _AzkarMasaaState extends State<AzkarMasaa> {
               setState(() {});
             },
             child: Icon(
-              Icons.arrow_back,color: pro.mode == ThemeMode.dark
-                ? Colors.white
-                : Colors.black,
+              Icons.arrow_back,
+              color: pro.mode == ThemeMode.dark ? Colors.white : Colors.black,
             )),
       ),
       body: Column(
@@ -67,15 +66,13 @@ class _AzkarMasaaState extends State<AzkarMasaa> {
                   children: [
                     InkWell(
                       onTap: () {
-                        if(azkarTimes[index]>0){
+                        if (azkarTimes[index] > 0) {
                           azkarTimes[index]--;
-                          setState(() {
-
-                          });
+                          setState(() {});
                         }
                       },
                       child: Padding(
-                        padding:  EdgeInsets.all(12.0.sp),
+                        padding: EdgeInsets.all(12.0.sp),
                         child: SingleChildScrollView(
                           child: Container(
                             padding: EdgeInsets.all(12.sp),
@@ -83,12 +80,18 @@ class _AzkarMasaaState extends State<AzkarMasaa> {
                             // height: 200,
                             decoration: BoxDecoration(
                               color: pro.mode == ThemeMode.dark
-                                  ?  azkarTimes[index]==0?Colors.grey:Color(0xff141A2E)
-                                  : azkarTimes[index]==0? Colors.grey:Colors.white,
+                                  ? azkarTimes[index] == 0
+                                      ? Colors.grey
+                                      : Color(0xff141A2E)
+                                  : azkarTimes[index] == 0
+                                      ? Colors.grey
+                                      : Colors.white,
                               boxShadow: [
                                 BoxShadow(
                                   color: pro.mode == ThemeMode.dark
-                                      ? azkarTimes[index]==0? Colors.grey:Colors.red
+                                      ? azkarTimes[index] == 0
+                                          ? Colors.grey
+                                          : Colors.red
                                       : Color(0xffB7935F),
                                   blurRadius: 5.sp,
                                   spreadRadius: 1.sp,
@@ -96,8 +99,16 @@ class _AzkarMasaaState extends State<AzkarMasaa> {
                                 ),
                               ],
                               border: pro.mode == ThemeMode.dark
-                                  ? Border.all(color:  azkarTimes[index]==0?Colors.grey:Colors.red, width: 1.w)
-                                  : Border.all(color: azkarTimes[index]==0? Colors.grey:Color(0xffB7935F), width: 3),
+                                  ? Border.all(
+                                      color: azkarTimes[index] == 0
+                                          ? Colors.grey
+                                          : Colors.red,
+                                      width: 1.w)
+                                  : Border.all(
+                                      color: azkarTimes[index] == 0
+                                          ? Colors.grey
+                                          : Color(0xffB7935F),
+                                      width: 3),
                               borderRadius: BorderRadius.only(
                                 bottomRight: Radius.circular(50.r),
                                 bottomLeft: Radius.circular(20.r),
@@ -117,15 +128,13 @@ class _AzkarMasaaState extends State<AzkarMasaa> {
                                   indent: 20,
                                   endIndent: 20,
                                 ),
-                                Text(" ${azkarTimes[index]} مرات  " )
-
+                                Text(" ${azkarTimes[index]} مرات  ")
                               ],
                             ),
                           ),
                         ),
                       ),
                     ),
-
                   ],
                 );
               },

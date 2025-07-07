@@ -1,18 +1,15 @@
 import 'dart:io';
 
 import 'package:audioplayers/audioplayers.dart';
+import 'package:background_downloader/background_downloader.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:islami/core/widgets/bg_widget.dart';
-import 'package:islami/main.dart';
-import 'package:islami/moduels/layouts/screens/setting_screen.dart';
-import 'package:islami/moduels/layouts/screens/theme_bottom_sheet.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:background_downloader/background_downloader.dart';
 
-import '../../../providers/my_provider.dart';
+import '../../../../providers/my_provider.dart';
 
 class QuranPlayer extends StatefulWidget {
   final int id;
@@ -90,7 +87,8 @@ class _QuranPlayerState extends State<QuranPlayer> {
     _player.dispose();
     super.dispose();
   }
-  double progres=0.0;
+
+  double progres = 0.0;
   @override
   Widget build(BuildContext context) {
     var pro = Provider.of<MyProvider>(context);
@@ -226,7 +224,6 @@ class _QuranPlayerState extends State<QuranPlayer> {
             SizedBox(
               height: 10.h,
             ),
-
             ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   fixedSize: Size(200.w, 60.h),
@@ -262,9 +259,11 @@ class _QuranPlayerState extends State<QuranPlayer> {
     String seconds = twoDigits(duration.inSeconds.remainder(60));
     return "$minutes:$seconds";
   }
+
   Future<String> getDocumentsPath() async {
     Directory? directory = await getExternalStorageDirectory();
-    String newPath = "${directory?.path}/Documents"; // حفظ الملفات داخل Documents
+    String newPath =
+        "${directory?.path}/Documents"; // حفظ الملفات داخل Documents
     return newPath;
   }
 
@@ -292,7 +291,7 @@ class _QuranPlayerState extends State<QuranPlayer> {
     final result = await FileDownloader().download(task,
         onProgress: (progress) {
           print('Progress: ${progress * 100}%');
-          progres=progress;
+          progres = progress;
         },
         onStatus: (status) => print('Status: $status'));
     FileDownloader().configureNotification(

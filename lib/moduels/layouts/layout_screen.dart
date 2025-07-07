@@ -1,13 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:islami/moduels/layouts/screens/azkar_masaa.dart';
-import 'package:islami/moduels/layouts/screens/hadeth_screen.dart';
-import 'package:islami/moduels/layouts/screens/home_screen.dart';
-import 'package:islami/moduels/layouts/screens/quran_screen.dart';
-import 'package:islami/moduels/layouts/screens/reciter_screen.dart';
-import 'package:islami/moduels/layouts/screens/sebha_screen.dart';
-import 'package:islami/moduels/layouts/screens/setting_screen.dart';
+import 'package:islami/moduels/layouts/screens/hadeth/hadeth_screen.dart';
+import 'package:islami/moduels/layouts/screens/home/home_screen.dart';
+import 'package:islami/moduels/layouts/screens/quran/quran_screen.dart';
+import 'package:islami/moduels/layouts/screens/reciter/reciter_screen.dart';
+import 'package:islami/moduels/layouts/screens/sebha/sebha_screen.dart';
+import 'package:islami/moduels/layouts/screens/settings/setting_screen.dart';
 import 'package:islami/providers/my_provider.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
@@ -77,7 +76,9 @@ class _LayoutScreenState extends State<LayoutScreen> {
               ),
             ),
             bottomNavigationBar: SalomonBottomBar(
-              backgroundColor:  pro.mode==ThemeMode.dark? Color(0xff141A2E): Color(0xffB7935F),
+              backgroundColor: pro.mode == ThemeMode.dark
+                  ? Color(0xff141A2E)
+                  : Color(0xffB7935F),
               onTap: (value) {
                 selectedIndex = value;
                 setState(() {});
@@ -96,7 +97,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
                     icon: ImageIcon(
                         size: 35.sp, AssetImage("assets/icons/icon_quran.png")),
                     title: Text("${"quranTap".tr()}"),
-                    selectedColor:pro.mode == ThemeMode.dark
+                    selectedColor: pro.mode == ThemeMode.dark
                         ? Color(0xffFACC1D)
                         : Colors.white),
                 SalomonBottomBarItem(
@@ -134,18 +135,6 @@ class _LayoutScreenState extends State<LayoutScreen> {
               children: [
                 Expanded(child: screen[selectedIndex]),
               ],
-            ),
-          ),
-          IgnorePointer(
-            ignoring: true,
-            child: Lottie.asset(
-              delegates: LottieDelegates(values: [
-                ValueDelegate.color(
-                    const ['**'], // Change all colors in the animation
-                    value: Colors.black // Set your desired color
-                    ),
-              ]),
-              "assets/icons/Animation - 1740746275195.json",
             ),
           ),
         ],

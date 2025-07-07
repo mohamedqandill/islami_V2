@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:islami/core/widgets/bg_widget.dart';
-import 'package:islami/moduels/layouts/layout_screen.dart';
-import 'package:islami/moduels/layouts/screens/azkarSabah.dart';
-import 'package:islami/moduels/layouts/screens/azkar_after_salah.dart';
-import 'package:islami/moduels/layouts/screens/azkar_masaa.dart';
-import 'package:islami/moduels/layouts/screens/nabi_screen.dart';
-import 'package:islami/moduels/layouts/screens/prayer_time_screen.dart';
-import 'package:islami/moduels/layouts/screens/quran_doaa_screen.dart';
-import 'package:islami/moduels/layouts/screens/tasbeh_screen.dart';
+import 'package:islami/moduels/layouts/screens/home/azkarSabah.dart';
+import 'package:islami/moduels/layouts/screens/home/azkar_masaa.dart';
+import 'package:islami/moduels/layouts/screens/home/prayer_time_screen.dart';
+import 'package:islami/moduels/layouts/screens/home/quran_doaa_screen.dart';
+import 'package:islami/moduels/layouts/screens/home/tasbeh_screen.dart';
 import 'package:provider/provider.dart';
 
-import '../../../providers/my_provider.dart';
+import '../../../../providers/my_provider.dart';
+import 'azkar_after_salah.dart';
 import 'doaa_screen.dart';
+import 'nabi_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
@@ -196,7 +195,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-
                   Padding(
                     padding: const EdgeInsets.all(3.0),
                     child: ElevatedButton(
@@ -312,7 +310,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         setState(() {});
                       },
                       child: Text(
-
                         "اذكار ما بعد الصلاه ",
                         style: Theme.of(context).textTheme.titleSmall,
                       ),
@@ -342,7 +339,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
                   ),
-
                   Padding(
                     padding: EdgeInsets.all(3.0.sp),
                     child: ElevatedButton(

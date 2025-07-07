@@ -1,36 +1,44 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:islami/core/theme/app_theme.dart';
 import 'package:islami/moduels/layouts/layout_screen.dart';
-import 'package:islami/moduels/layouts/screens/azkarSabah.dart';
-import 'package:islami/moduels/layouts/screens/azkar_masaa.dart';
-import 'package:islami/moduels/layouts/screens/hadeth_details.dart';
-import 'package:islami/moduels/layouts/screens/nabi_screen.dart';
-import 'package:islami/moduels/layouts/screens/sura_details.dart';
+import 'package:islami/moduels/layouts/screens/hadeth/hadeth_details.dart';
+import 'package:islami/moduels/layouts/screens/home/azkarSabah.dart';
+import 'package:islami/moduels/layouts/screens/home/azkar_masaa.dart';
+import 'package:islami/moduels/layouts/screens/home/nabi_screen.dart';
+import 'package:islami/moduels/layouts/screens/quran/sura_details.dart';
 import 'package:islami/moduels/splash/screens/splash_screen.dart';
-
 import 'package:islami/providers/my_provider.dart';
-
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tzData;
 
 import 'firebase_options.dart';
-import 'moduels/layouts/screens/azkar_after_salah.dart';
-import 'moduels/layouts/screens/doaa_screen.dart';
-import 'moduels/layouts/screens/prayer_time_screen.dart';
-import 'moduels/layouts/screens/quran_doaa_screen.dart';
-import 'moduels/layouts/screens/reciter_sura_screen.dart';
-import 'moduels/layouts/screens/setting_screen.dart';
-import 'moduels/layouts/screens/tasbeh_screen.dart';
+import 'moduels/layouts/screens/home/azkar_after_salah.dart';
+import 'moduels/layouts/screens/home/doaa_screen.dart';
+import 'moduels/layouts/screens/home/prayer_time_screen.dart';
+import 'moduels/layouts/screens/home/quran_doaa_screen.dart';
+import 'moduels/layouts/screens/home/tasbeh_screen.dart';
+import 'moduels/layouts/screens/reciter/reciter_sura_screen.dart';
+import 'moduels/layouts/screens/settings/qiblah_screen.dart';
+import 'moduels/layouts/screens/settings/setting_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  tz.initializeTimeZones();
+  var timeZone = await FlutterTimezone.getLocalTimezone();
+  tzData.setLocalLocation(tzData.getLocation(timeZone));
+  print(tzData.getLocation(timeZone));
+
+  print("TimeZone: ${tzData.local.name}");
 
   var sharedPrefernces = await SharedPreferences.getInstance();
   await EasyLocalization.ensureInitialized();
@@ -42,8 +50,7 @@ void main() async {
     // <-- change the path of the translation files
     fallbackLocale: Locale('en', 'US'),
     child: ChangeNotifierProvider(
-        create: (context) => MyProvider(sharedPrefernces),
-        child: MyApp()),
+        create: (context) => MyProvider(sharedPrefernces), child: MyApp()),
   ));
 }
 
@@ -84,6 +91,7 @@ class MyApp extends StatelessWidget {
           AzkarAfterSalah.routeName: (context) => AzkarAfterSalah(),
           QuranDoaa.routeName: (context) => QuranDoaa(),
           TasbehScreen.routeName: (context) => TasbehScreen(),
+          QiblaDirection.routeName: (context) => QiblaDirection(),
         },
         initialRoute: SplashScreen.routeName,
         // localizationsDelegates: [
@@ -95,8 +103,7 @@ class MyApp extends StatelessWidget {
         //   Locale('en'), // English
         //   Locale('ar'), // Spanish
         // ],
-      ) ,
-
+      ),
     );
   }
 }

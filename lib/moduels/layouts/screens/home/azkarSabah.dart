@@ -1,12 +1,9 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:islami/core/widgets/bg_widget.dart';
-import 'package:islami/main.dart';
 import 'package:provider/provider.dart';
 
-import '../../../providers/my_provider.dart';
+import '../../../../providers/my_provider.dart';
 
 class AzkarSabah extends StatefulWidget {
   static const String routeName = "azkarSabah";
@@ -39,7 +36,6 @@ class _AzkarSabahState extends State<AzkarSabah> {
   List<int> azkarTimes = [1, 3, 3, 2, 2, 1, 2, 2, 2, 3, 2, 1, 2, 2, 1, 2];
   int index = 0;
 
-
   @override
   Widget build(BuildContext context) {
     // bool  pro.mode==ThemeMode.dark  = AppTheme.isDark;
@@ -70,7 +66,6 @@ class _AzkarSabahState extends State<AzkarSabah> {
               itemCount: azkaar.length,
               itemBuilder: (context, index) {
                 return InkWell(
-
                   child: Padding(
                     padding: EdgeInsets.all(12.0.sp),
                     child: SingleChildScrollView(
@@ -80,12 +75,18 @@ class _AzkarSabahState extends State<AzkarSabah> {
                         // height: 200,
                         decoration: BoxDecoration(
                             color: pro.mode == ThemeMode.dark
-                                ?  azkarTimes[index]==0?Colors.grey:Color(0xff141A2E)
-                                :azkarTimes[index]==0? Colors.grey:Colors.white,
+                                ? azkarTimes[index] == 0
+                                    ? Colors.grey
+                                    : Color(0xff141A2E)
+                                : azkarTimes[index] == 0
+                                    ? Colors.grey
+                                    : Colors.white,
                             boxShadow: [
                               BoxShadow(
                                   color: pro.mode == ThemeMode.dark
-                                      ?  azkarTimes[index]==0?Colors.grey:Colors.red
+                                      ? azkarTimes[index] == 0
+                                          ? Colors.grey
+                                          : Colors.red
                                       : Color(0xffB7935F),
                                   blurRadius: 5.sp,
                                   spreadRadius: 1.sp)
@@ -97,9 +98,16 @@ class _AzkarSabahState extends State<AzkarSabah> {
                               topRight: Radius.circular(20.r),
                             ),
                             border: pro.mode == ThemeMode.dark
-                                ? Border.all(color:  azkarTimes[index]==0?Colors.grey:Colors.red, width: 1.w)
+                                ? Border.all(
+                                    color: azkarTimes[index] == 0
+                                        ? Colors.grey
+                                        : Colors.red,
+                                    width: 1.w)
                                 : Border.all(
-                                    color:azkarTimes[index]==0? Colors.grey: Color(0xffB7935F), width: 3.w)),
+                                    color: azkarTimes[index] == 0
+                                        ? Colors.grey
+                                        : Color(0xffB7935F),
+                                    width: 3.w)),
                         child: Column(
                           children: [
                             Text(
@@ -112,19 +120,16 @@ class _AzkarSabahState extends State<AzkarSabah> {
                               indent: 20.sp,
                               endIndent: 20.sp,
                             ),
-                            Text(" ${azkarTimes[index]} مرات  " )
-
+                            Text(" ${azkarTimes[index]} مرات  ")
                           ],
                         ),
                       ),
                     ),
                   ),
                   onTap: () {
-                    if(azkarTimes[index]>0){
+                    if (azkarTimes[index] > 0) {
                       azkarTimes[index]--;
-                      setState(() {
-
-                      });
+                      setState(() {});
                     }
                   },
                 );

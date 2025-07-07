@@ -64,7 +64,13 @@ dependencies:
   firebase_messaging:
   googleapis_auth:
   salomon_bottom_bar:
-  flutter_local_notifications: ^18.0.1
+  flutter_compass:
+  permission_handler:
+  flutter_local_notifications:
+  flutter_advanced_switch:
+  flutter_datetime_picker:
+  timezone: ^0.10.1
+  flutter_timezone:
 dev_dependencies:
   flutter_test:
     sdk: flutter

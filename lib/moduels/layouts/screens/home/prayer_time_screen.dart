@@ -1,13 +1,10 @@
-
-
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:islami/core/theme/app_theme.dart';
 import 'package:islami/core/widgets/bg_widget.dart';
 import 'package:provider/provider.dart';
 
-import '../../../providers/my_provider.dart';
+import '../../../../providers/my_provider.dart';
 
 class PrayerTimeScreen extends StatefulWidget {
   static const String routeName = "prayer";
@@ -72,18 +69,20 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
         body: isLoading
             ? const Center(child: CircularProgressIndicator())
             : errorMessage != null
-            ? Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Icons.error, size: 30, color: Colors.red),
-              Text("No Internet Connection", style: const TextStyle(color: Colors.red)),
-            ],
-          ),
-        )
-            : pro.prayerTimeModel.data?.timings == null
-            ? const Center(child: Text("لم يتم العثور على بيانات الصلاة"))
-            : _buildPrayerTimeUI(pro),
+                ? Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(Icons.error, size: 30, color: Colors.red),
+                        Text("No Internet Connection",
+                            style: const TextStyle(color: Colors.red)),
+                      ],
+                    ),
+                  )
+                : pro.prayerTimeModel.data?.timings == null
+                    ? const Center(
+                        child: Text("لم يتم العثور على بيانات الصلاة"))
+                    : _buildPrayerTimeUI(pro),
       ),
     );
   }
@@ -120,20 +119,26 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                   Text(
                     "الصلاه",
                     style: TextStyle(
-                      color: pro.mode == ThemeMode.dark ? Colors.black : Colors.orange,
+                      color: pro.mode == ThemeMode.dark
+                          ? Colors.black
+                          : Colors.orange,
                     ),
                   ),
                   Text(
                     "الوقت",
                     style: TextStyle(
-                      color: pro.mode == ThemeMode.dark ? Colors.black : Colors.orange,
+                      color: pro.mode == ThemeMode.dark
+                          ? Colors.black
+                          : Colors.orange,
                     ),
                   ),
                 ],
               ),
             ),
             Divider(
-              color: pro.mode == ThemeMode.dark ? const Color(0xffFACC1D) : Colors.white,
+              color: pro.mode == ThemeMode.dark
+                  ? const Color(0xffFACC1D)
+                  : Colors.white,
             ),
             Expanded(
               child: ListView.builder(
@@ -161,7 +166,6 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
   List<String> convertListTo12HourFormat(List<String> timeList) {
     return timeList.map((time) {
       try {
-
         DateTime dateTime = DateFormat("H:mm", 'en').parse(time);
         // ضبط اللغة على الإنجليزية
         return DateFormat("h:mm a", 'en').format(dateTime);

@@ -106,6 +106,31 @@ class NotificationService {
     );
   }
 
+  scheduledAzkarNotification({
+    required String title,
+    required String body,
+    required int id,
+  }) async {
+    await flutterLocalNotificationsPlugin.zonedSchedule(
+      id,
+      title,
+      body,
+      tz.TZDateTime.now(tz.local).add(const Duration(minutes: 20)),
+      const NotificationDetails(
+        android: AndroidNotificationDetails(
+          'ChannelID',
+          'ChannelName',
+          importance: Importance.max,
+          priority: Priority.high,
+        ),
+      ),
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
+      matchDateTimeComponents: DateTimeComponents.time,
+      androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+    );
+  }
+
   /// Request IOS permissions
   void requestIOSPermissions() {
     flutterLocalNotificationsPlugin
@@ -118,7 +143,10 @@ class NotificationService {
         );
   }
 
-  cancelAll() async => await flutterLocalNotificationsPlugin.cancelAll();
+  cancelAll() async {
+    await flutterLocalNotificationsPlugin.cancelAll();
+    print("Notification Cancelled");
+  }
 
   cancel(id) async => await flutterLocalNotificationsPlugin.cancel(id);
 }

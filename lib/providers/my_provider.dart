@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:islami/models/PrayerTimeModel.dart';
 import 'package:islami/models/ReciterModel.dart';
@@ -15,7 +14,6 @@ class MyProvider extends ChangeNotifier {
   late ReciterModel reciterModel;
   late String audioFile;
   late Position position;
-
 
   static const String isDarkTheme = "Theme";
 
@@ -71,7 +69,6 @@ class MyProvider extends ChangeNotifier {
       print(response.statusCode);
       if (response.statusCode == 200) {
         reciterModel = ReciterModel.fromJson(response.data);
-
       }
 
       return reciterModel;
@@ -79,30 +76,23 @@ class MyProvider extends ChangeNotifier {
       rethrow;
     }
   }
-  Future<String> suraAudio({required int id, required int chapter}) async {
 
+  Future<String> suraAudio({required int id, required int chapter}) async {
     try {
       var response = await dio.get(
         "https://api.quran.com/api/v4/chapter_recitations/$id/$chapter",
-
       );
       print(response.statusCode);
       if (response.statusCode == 200) {
         SuraAudioModel suraAudioModel = SuraAudioModel.fromJson(response.data);
-        audioFile=suraAudioModel.audioFile?.audioUrl??"";
-        print(suraAudioModel.audioFile?.audioUrl??"");
+        audioFile = suraAudioModel.audioFile?.audioUrl ?? "";
+        print(suraAudioModel.audioFile?.audioUrl ?? "");
         notifyListeners();
-
-
       }
 
-      return audioFile ;
+      return audioFile;
     } catch (e) {
       rethrow;
     }
   }
-
-
-
-
 }

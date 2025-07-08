@@ -69,13 +69,13 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
         body: isLoading
             ? const Center(child: CircularProgressIndicator())
             : errorMessage != null
-                ? Center(
+                ? const Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Icon(Icons.error, size: 30, color: Colors.red),
+                        Icon(Icons.error, size: 30, color: Colors.red),
                         Text("No Internet Connection",
-                            style: const TextStyle(color: Colors.red)),
+                            style: TextStyle(color: Colors.red)),
                       ],
                     ),
                   )

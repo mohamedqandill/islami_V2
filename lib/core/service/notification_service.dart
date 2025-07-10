@@ -9,7 +9,7 @@ class NotificationService {
 
   /// Initialize notification
   initializeNotification() async {
-    await _configureLocalTimeZone();
+    // await _configureLocalTimeZone();
     const InitializationSettings initializationSettings =
         InitializationSettings(
       android: AndroidInitializationSettings('@mipmap/ic_launcher'),
@@ -78,7 +78,9 @@ class NotificationService {
     required String body,
     required int id,
   }) async {
+    await _configureLocalTimeZone();
     final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
+    print("تم جدوله $title : $hour: $minutes");
     await flutterLocalNotificationsPlugin.zonedSchedule(
       id,
       title,
@@ -99,8 +101,6 @@ class NotificationService {
           priority: Priority.high,
         ),
       ),
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
       matchDateTimeComponents: DateTimeComponents.time,
       androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
     );
@@ -124,8 +124,6 @@ class NotificationService {
           priority: Priority.high,
         ),
       ),
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
       matchDateTimeComponents: DateTimeComponents.time,
       androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
     );

@@ -6,6 +6,7 @@ import 'package:islami/core/widgets/bg_widget.dart';
 import 'package:islami/moduels/layouts/screens/settings/language_bottom_sheet.dart';
 import 'package:islami/moduels/layouts/screens/settings/theme_bottom_sheet.dart';
 import 'package:islami/providers/my_provider.dart';
+import 'package:prayers_times/prayer_times.dart';
 import 'package:provider/provider.dart';
 import 'package:workmanager/workmanager.dart';
 
@@ -27,6 +28,7 @@ class _SettingScreenState extends State<SettingScreen> {
   var selectedTime = TimeOfDay.fromDateTime(DateTime.now());
   var formattedAzkarSabah;
   var formattedAzkarMasaa;
+  late DateTime maghribTime;
   late SharedPrefs sharedPrefs;
   late NotificationService notificationService;
 
@@ -35,8 +37,21 @@ class _SettingScreenState extends State<SettingScreen> {
     notificationService = NotificationService();
     sharedPrefs = SharedPrefs();
     initPrefs();
+    getPrayerTimes();
 
     super.initState();
+  }
+
+  getPrayerTimes() {
+    Coordinates coordinates = Coordinates(30.0444, 31.2357);
+    PrayerCalculationParameters params = PrayerCalculationMethod.karachi();
+    PrayerTimes prayerTimes = PrayerTimes(coordinates, DateTime.now(), params);
+    maghribTime = prayerTimes.maghrib!.toLocal();
+    print(prayerTimes.maghrib!.toLocal());
+    print(prayerTimes.dhuhr!.toLocal());
+    print(prayerTimes.asr!.toLocal());
+    print(prayerTimes.isha!.toLocal());
+    print(prayerTimes.fajr!.toLocal());
   }
 
   Future<void> initPrefs() async {
@@ -214,6 +229,19 @@ class _SettingScreenState extends State<SettingScreen> {
                             requiresStorageNotLow: false,
                           ),
                         );
+                        await Workmanager().registerPeriodicTask(
+                          "dailyPrayerUpdateTask",
+                          "dailyPrayerTask",
+                          frequency: const Duration(minutes: 15),
+                          initialDelay: getDelayUntilNext1AM(),
+                          constraints: Constraints(
+                            networkType: NetworkType.not_required,
+                            requiresBatteryNotLow: false,
+                            requiresCharging: false,
+                            requiresDeviceIdle: false,
+                            requiresStorageNotLow: false,
+                          ),
+                        );
                       }
                       if (!controller.value) {
                         notificationService.cancelAll();
@@ -272,7 +300,8 @@ class _SettingScreenState extends State<SettingScreen> {
                                       .format(selectedDateTime);
 
                                   if (formattedAzkarSabah != null) {
-                                    if (selectedDateTime.hour >= 20) {
+                                    if (selectedDateTime.hour >=
+                                        maghribTime.hour) {
                                       formattedAzkarSabah = "";
                                       await sharedPrefs.remove("azkarSabah");
                                       setState(() {});
@@ -362,7 +391,8 @@ class _SettingScreenState extends State<SettingScreen> {
                                       .format(selectedDateTime);
 
                                   if (formattedAzkarMasaa != null) {
-                                    if (selectedDateTime.hour <= 18) {
+                                    if (selectedDateTime.hour <=
+                                        maghribTime.hour) {
                                       formattedAzkarMasaa = "";
                                       await sharedPrefs.remove("azkarMasaa");
                                       setState(() {});
@@ -433,5 +463,12 @@ class _SettingScreenState extends State<SettingScreen> {
 
   initNotification() async {
     await notificationService.initializeNotification();
+  }
+
+  Duration getDelayUntilNext1AM() {
+    DateTime now = DateTime.now();
+    DateTime next1AM = DateTime(now.year, now.month, now.day + 1, 1);
+
+    return next1AM.difference(now);
   }
 }

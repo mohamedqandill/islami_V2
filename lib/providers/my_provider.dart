@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:islami/models/PrayerTimeModel.dart';
 import 'package:islami/models/ReciterModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,7 +12,7 @@ class MyProvider extends ChangeNotifier {
   late PrayerTimeModel prayerTimeModel;
   late ReciterModel reciterModel;
   late String audioFile;
-  late Position position;
+  // late Position position;
 
   static const String isDarkTheme = "Theme";
 

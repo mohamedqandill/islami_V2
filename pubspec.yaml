@@ -55,8 +55,7 @@ dependencies:
   firebase_core:
   dio:
   location:
-  geolocator:
-  geocoding:
+  prayers_times:
   audioplayers: ^6.1.2
   path_provider: ^2.1.5
   workmanager:

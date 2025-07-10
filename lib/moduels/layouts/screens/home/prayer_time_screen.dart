@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:islami/core/widgets/bg_widget.dart';
+import 'package:prayers_times/prayer_times.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../providers/my_provider.dart';
@@ -18,15 +19,29 @@ class PrayerTimeScreen extends StatefulWidget {
 class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
   List<String> prayer = ["الفجر", "الظهر", "العصر", "المغرب", "العشاء"];
   late String formattedDay;
+  late PrayerTimes prayerTimes;
+  List<String> formmatedPrayerTimes = [];
   bool isLoading = true;
   String? errorMessage;
+
+  var locationLatitude;
+  var locationLongtiude;
 
   @override
   void initState() {
     super.initState();
+    prayerTimes = getPrayerTimes();
+
     DateTime dateTime = DateTime.now();
     formattedDay = DateFormat("dd-MMMM-yyyy").format(dateTime);
     _loadPrayerTimes();
+  }
+
+  PrayerTimes getPrayerTimes() {
+    Coordinates coordinates = Coordinates(30.0444, 31.2357);
+    PrayerCalculationParameters params = PrayerCalculationMethod.karachi();
+    PrayerTimes prayerTimes = PrayerTimes(coordinates, DateTime.now(), params);
+    return prayerTimes;
   }
 
   Future<void> _loadPrayerTimes() async {
@@ -66,36 +81,24 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
             ),
           ),
         ),
-        body: isLoading
-            ? const Center(child: CircularProgressIndicator())
-            : errorMessage != null
-                ? const Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.error, size: 30, color: Colors.red),
-                        Text("No Internet Connection",
-                            style: TextStyle(color: Colors.red)),
-                      ],
-                    ),
-                  )
-                : pro.prayerTimeModel.data?.timings == null
-                    ? const Center(
-                        child: Text("لم يتم العثور على بيانات الصلاة"))
-                    : _buildPrayerTimeUI(pro),
+        body: buildPrayerTimeUI(pro),
       ),
     );
   }
 
-  Widget _buildPrayerTimeUI(MyProvider pro) {
-    List<String> prayerTime = [
-      pro.prayerTimeModel.data!.timings!.fajr ?? "00:00",
-      pro.prayerTimeModel.data!.timings!.dhuhr ?? "00:00",
-      pro.prayerTimeModel.data!.timings!.asr ?? "00:00",
-      pro.prayerTimeModel.data!.timings!.maghrib ?? "00:00",
-      pro.prayerTimeModel.data!.timings!.isha ?? "00:00",
+  Widget buildPrayerTimeUI(MyProvider pro) {
+    List<DateTime> prayerTime = [
+      prayerTimes.fajr!.toLocal(),
+      prayerTimes.dhuhr!.toLocal(),
+      prayerTimes.asr!
+          .toLocal()
+          .subtract(const Duration(hours: 1, minutes: 15)),
+      prayerTimes.maghrib!.toLocal(),
+      prayerTimes.isha!.toLocal(),
     ];
-    List<String> formattedTime = convertListTo12HourFormat(prayerTime);
+    for (var i in prayerTime) {
+      formmatedPrayerTimes.add(DateFormat('h:mm a').format(i));
+    }
 
     return Center(
       child: Container(
@@ -150,7 +153,7 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Text(prayer[index]),
-                        Text(formattedTime[index]),
+                        Text(formmatedPrayerTimes[index]),
                       ],
                     ),
                   );
@@ -161,17 +164,5 @@ class _PrayerTimeScreenState extends State<PrayerTimeScreen> {
         ),
       ),
     );
-  }
-
-  List<String> convertListTo12HourFormat(List<String> timeList) {
-    return timeList.map((time) {
-      try {
-        DateTime dateTime = DateFormat("H:mm", 'en').parse(time);
-        // ضبط اللغة على الإنجليزية
-        return DateFormat("h:mm a", 'en').format(dateTime);
-      } catch (e) {
-        return "غير متاح";
-      }
-    }).toList();
   }
 }

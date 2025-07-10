@@ -17,7 +17,9 @@ import '../../core/widgets/bg_widget.dart';
 class LayoutScreen extends StatefulWidget {
   static const String routeName = "layout";
 
-  LayoutScreen({super.key});
+  LayoutScreen({
+    super.key,
+  });
 
   @override
   State<LayoutScreen> createState() => _LayoutScreenState();
@@ -40,6 +42,11 @@ List<String> titels = [
 
 class _LayoutScreenState extends State<LayoutScreen> {
   int selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +83,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
               ),
             ),
             bottomNavigationBar: SalomonBottomBar(
+              itemPadding: EdgeInsets.all(6.sp),
               backgroundColor: pro.mode == ThemeMode.dark
                   ? Color(0xff141A2E)
                   : Color(0xffB7935F),
@@ -95,8 +103,8 @@ class _LayoutScreenState extends State<LayoutScreen> {
               items: [
                 SalomonBottomBarItem(
                     icon: ImageIcon(
-                        size: 35.sp, AssetImage("assets/icons/icon_quran.png")),
-                    title: Text("${"quranTap".tr()}"),
+                        size: 30.sp, AssetImage("assets/icons/icon_quran.png")),
+                    title: Text("quranTap".tr()),
                     selectedColor: pro.mode == ThemeMode.dark
                         ? Color(0xffFACC1D)
                         : Colors.white),
@@ -104,7 +112,7 @@ class _LayoutScreenState extends State<LayoutScreen> {
                     icon: ImageIcon(
                         size: 30.sp,
                         AssetImage("assets/icons/icons8-home-64.png")),
-                    title: Text(""),
+                    title: Text("الرئيسيه"),
                     selectedColor: pro.mode == ThemeMode.dark
                         ? Color(0xffFACC1D)
                         : Colors.white),

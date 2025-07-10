@@ -150,15 +150,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.pushNamed(context, AzkarSabah.routeName);
                         setState(() {});
                       },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            "اذكار الصباح ",
-                            style: Theme.of(context).textTheme.titleSmall,
-                          ),
-                          // Image(image: AssetImage("assets/icons/icons8-swap-50.png",),width: 40,),
-                        ],
+                      child: Text(
+                        "اذكار الصباح ",
+                        style: Theme.of(context).textTheme.titleSmall,
                       ),
                     ),
                   ),
@@ -216,15 +210,9 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.pushNamed(context, AzkarMasaa.routeName);
                         setState(() {});
                       },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Text(
-                            "اذكار المساء",
-                            style: Theme.of(context).textTheme.titleSmall,
-                          ),
-                          // Image(image: AssetImage("assets/icons/icons8-swap-50.png",),width: 40,),
-                        ],
+                      child: Text(
+                        "اذكار المساء",
+                        style: Theme.of(context).textTheme.titleSmall,
                       ),
                     ),
                   ),

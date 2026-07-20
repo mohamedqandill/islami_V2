@@ -40,7 +40,8 @@
 إليك بعض اللقطات من داخل التطبيق:
 
 <p align="center">
-  <img src="assets/screenshots/4.png" width="250" hspace="10" vspace="10">
+  <img src="<img width="1024" height="500" alt="Untitled design (3)" src="https://github.com/user-attachments/assets/43383aa2-1d5c-42a6-9919-064c2723e4e6" />
+" width="250" hspace="10" vspace="10">
   <img src="assets/screenshots/7.png" width="250" hspace="10" vspace="10">
   <img src="assets/screenshots/9(1).png" width="250" hspace="10" vspace="10">
   <img src="assets/screenshots/IMG-20250729-WA0012.png" width="250" hspace="10" vspace="10">

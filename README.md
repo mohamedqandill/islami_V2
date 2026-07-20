@@ -1,3 +1,4 @@
+<img width="1024" height="500" alt="Untitled design (3)" src="https://github.com/user-attachments/assets/8a2ab2c2-4e57-41c8-9d0b-73e857cb8fca" />
 # تطبيق إسلامي (Islami App)
 
 تطبيق إسلامي متكامل مبني باستخدام إطار عمل Flutter. يهدف التطبيق إلى توفير مجموعة من الخدمات والميزات الأساسية التي يحتاجها كل مسلم في حياته اليومية، مع تصميم عصري وتجربة مستخدم سلسة.
@@ -39,12 +40,6 @@
 
 إليك بعض اللقطات من داخل التطبيق:
 
-<p align="center">
-  <img src="<img width="1024" height="500" alt="Untitled design (3)" src="https://github.com/user-attachments/assets/43383aa2-1d5c-42a6-9919-064c2723e4e6" />
-" width="250" hspace="10" vspace="10">
-  <img src="assets/screenshots/7.png" width="250" hspace="10" vspace="10">
-  <img src="assets/screenshots/9(1).png" width="250" hspace="10" vspace="10">
-  <img src="assets/screenshots/IMG-20250729-WA0012.png" width="250" hspace="10" vspace="10">
-  <img src="assets/screenshots/Untitled design (2).png" width="250" hspace="10" vspace="10">
-  <img src="assets/screenshots/Untitled design (3).png" width="250" hspace="10" vspace="10">
-</p>
+
+<img width="1024" height="500" alt="Untitled design (3)" src="https://github.com/user-attachments/assets/ead1b939-2d97-41f8-bc8d-8197e5fcf70f" />
+
